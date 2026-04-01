@@ -431,8 +431,22 @@ display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 .rsi-body { flex: 1; min-width: 0; }
 .rsi-name { font-size: 12px; font-weight: 600; color: var(–text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .rsi-addr { font-size: 10px; color: var(–text3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.rsi-drag { color: var(–text3); flex-shrink: 0; display: flex; flex-direction: column; gap: 2.5px; padding: 3px; }
-.rsi-drag span { display: block; width: 13px; height: 1.5px; background: currentColor; border-radius: 2px; }
+.rsi-arrows {
+display: flex; flex-direction: column; gap: 2px; flex-shrink: 0;
+}
+.rsi-arrow {
+width: 24px; height: 22px;
+border-radius: 6px;
+background: rgba(29,110,245,.1);
+color: var(–accent);
+font-size: 10px;
+display: flex; align-items: center; justify-content: center;
+cursor: pointer;
+transition: background .12s;
+user-select: none;
+}
+.rsi-arrow:active { background: rgba(29,110,245,.25); }
+.rsi-arrow-dim { opacity: 0.2; pointer-events: none; }
 .rsi-remove {
 width: 20px; height: 20px; border-radius: 6px;
 background: rgba(242,92,92,.15); color: var(–red);
@@ -840,7 +854,7 @@ flex-direction: column; gap: 14px; color: var(–text3); font-size: 13px;
   <div class="route-bar" id="routeBar">
     <div class="route-bar-top">
       <span class="route-bar-label">🗺 Route Stops</span>
-      <span class="route-bar-hint">Hold &amp; drag to reorder</span>
+      <span class="route-bar-hint">▲ ▼ to reorder</span>
     </div>
     <div class="route-stops-list" id="routeStopsList"></div>
     <button class="route-go-btn" id="routeGoBtn" onclick="launchGoogleMapsRoute()" disabled>
@@ -1671,8 +1685,7 @@ function saveSettings() {
 // ROUTE MODE
 // ═══════════════════════════════════════════════
 let routeMode = false;
-let routeStops = []; // ordered array of client ids
-let dragSrcIdx = null;
+let routeStops = [];
 
 function enterRouteMode() {
   routeMode = true;
@@ -1744,19 +1757,19 @@ function updateRouteBar() {
     const c = state.clients.find(x => x.id === id);
     if (!c) return '';
     const addr = [c.street, c.city].filter(Boolean).join(', ');
+    const canUp   = i > 0;
+    const canDown = i < routeStops.length - 1;
     return `
-      <div class="route-stop-item" draggable="true"
-           data-idx="${i}"
-           ondragstart="rsiDragStart(event,${i})"
-           ondragover="rsiDragOver(event)"
-           ondrop="rsiDrop(event,${i})"
-           ondragend="rsiDragEnd(event)">
+      <div class="route-stop-item" data-idx="${i}">
         <div class="rsi-num">${i + 1}</div>
         <div class="rsi-body">
           <div class="rsi-name">${esc(c.name)}</div>
           <div class="rsi-addr">${esc(addr)}</div>
         </div>
-        <div class="rsi-drag"><span></span><span></span><span></span></div>
+        <div class="rsi-arrows">
+          <div class="rsi-arrow ${canUp ? '' : 'rsi-arrow-dim'}" onclick="${canUp ? `moveStop(${i},-1)` : ''}">▲</div>
+          <div class="rsi-arrow ${canDown ? '' : 'rsi-arrow-dim'}" onclick="${canDown ? `moveStop(${i},1)` : ''}">▼</div>
+        </div>
         <div class="rsi-remove" onclick="removeRouteStop('${id}')">✕</div>
       </div>`;
   }).join('');
@@ -1771,31 +1784,14 @@ function removeRouteStop(id) {
   updateRouteBar();
 }
 
-// ── Drag-to-reorder in route bar ──
-function rsiDragStart(e, idx) {
-  dragSrcIdx = idx;
-  e.currentTarget.classList.add('dragging');
-  e.dataTransfer.effectAllowed = 'move';
-}
-function rsiDragOver(e) {
-  e.preventDefault();
-  e.dataTransfer.dropEffect = 'move';
-  document.querySelectorAll('.route-stop-item').forEach(el => el.classList.remove('drag-over'));
-  e.currentTarget.classList.add('drag-over');
-}
-function rsiDrop(e, targetIdx) {
-  e.preventDefault();
-  if (dragSrcIdx === null || dragSrcIdx === targetIdx) return;
-  const moved = routeStops.splice(dragSrcIdx, 1)[0];
-  routeStops.splice(targetIdx, 0, moved);
-  dragSrcIdx = null;
+// ── Touch-friendly reorder ──
+function moveStop(idx, dir) {
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= routeStops.length) return;
+  const moved = routeStops.splice(idx, 1)[0];
+  routeStops.splice(newIdx, 0, moved);
   updateRouteBar();
   renderList();
-}
-function rsiDragEnd(e) {
-  e.currentTarget.classList.remove('dragging');
-  document.querySelectorAll('.route-stop-item').forEach(el => el.classList.remove('drag-over'));
-  dragSrcIdx = null;
 }
 
 // ── Launch Google Maps multi-stop route ──
