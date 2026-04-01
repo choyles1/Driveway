@@ -45,6 +45,10 @@ overscroll-behavior: none;
 display: flex; flex-direction: column;
 height: 100vh; height: 100dvh;
 padding-top: var(–safe-top);
+max-width: 430px;
+margin: 0 auto;
+position: relative;
+box-shadow: 0 0 40px rgba(0,0,0,0.08);
 }
 
 /* ── TOP BAR ── */
@@ -78,7 +82,7 @@ transition: all .15s;
 flex-shrink: 0;
 }
 .icon-btn:active { transform: scale(.92); background: var(–surface2); }
-.icon-btn.accent { background: var(–accent); color: #fff; border-color: transparent; }
+.icon-btn.accent { background: #111827; color: #fff; border-color: transparent; }
 
 /* ── SEARCH + FILTER ── */
 .search-bar {
@@ -307,6 +311,34 @@ font-size: 9px; font-weight: 800;
 letter-spacing: .04em;
 }
 
+/* ── INACTIVE CLIENTS ── */
+.client-card.inactive { opacity: 0.42; border-style: dashed; }
+.inactive-badge {
+font-size: 9px; font-weight: 700;
+padding: 2px 7px; border-radius: 999px;
+background: rgba(156,163,175,0.18);
+color: var(–text3);
+letter-spacing: .04em;
+text-transform: uppercase;
+border: 1px solid rgba(156,163,175,0.28);
+}
+.show-inactive-toggle {
+display: flex; align-items: center; justify-content: center;
+gap: 6px; padding: 9px 16px;
+font-size: 12px; font-weight: 600; color: var(–text3);
+cursor: pointer; margin: 2px 0 6px;
+}
+.btn-deactivate {
+background: rgba(156,163,175,0.12);
+color: var(–text2);
+border: 1px solid rgba(156,163,175,0.3) !important;
+}
+.btn-reactivate {
+background: rgba(22,163,74,0.1);
+color: var(–green);
+border: 1px solid rgba(22,163,74,0.25) !important;
+}
+
 .route-topbar {
 display: none;
 align-items: center; justify-content: space-between;
@@ -354,7 +386,8 @@ background: var(–accent); border-color: var(–accent);
 .route-bar {
 position: fixed;
 bottom: calc(70px + var(–safe-bottom) + 10px);
-left: 16px; right: 16px;
+left: 50%; transform: translateX(-50%) translateY(140px);
+width: calc(100% - 32px); max-width: 398px;
 background: #ffffff;
 border: 1px solid rgba(29,110,245,.25);
 border-radius: 20px;
@@ -366,7 +399,7 @@ opacity: 0;
 transition: transform .35s cubic-bezier(.32,.72,0,1), opacity .25s;
 pointer-events: none;
 }
-.route-bar.visible { transform: translateY(0); opacity: 1; pointer-events: all; }
+.route-bar.visible { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: all; }
 .route-bar-top {
 display: flex; align-items: center; justify-content: space-between;
 margin-bottom: 10px;
@@ -513,7 +546,8 @@ color: var(–text3);
 
 /* ── BOTTOM NAV ── */
 .bottom-nav {
-position: fixed; bottom: 0; left: 0; right: 0;
+position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+width: 100%; max-width: 430px;
 background: rgba(255,255,255,0.95);
 backdrop-filter: blur(20px);
 -webkit-backdrop-filter: blur(20px);
@@ -1075,9 +1109,9 @@ const JSONBIN_BASE = 'https://api.jsonbin.io/v3/b';
 let state = {
   clients: [],
   editingId: null,
-  filterType: 'all',
   filterDay: 'all',
   search: '',
+  showInactive: false,
   apiKey: localStorage.getItem('ct_apiKey') || '',
   binId: localStorage.getItem('ct_binId') || '',
 };
@@ -1214,7 +1248,7 @@ function renderList() {
   const area = document.getElementById('listArea');
   document.getElementById('totalCount').textContent = state.clients.length;
 
-  let filtered = state.clients.filter(c => {
+  const allFiltered = state.clients.filter(c => {
     const cDays = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
     const matchDay  = state.filterDay === 'all' || cDays.includes(state.filterDay);
     const q = state.search;
@@ -1223,7 +1257,10 @@ function renderList() {
     return matchDay && matchSearch;
   });
 
-  if (!filtered.length) {
+  const active   = allFiltered.filter(c => c.active !== false);
+  const inactive = allFiltered.filter(c => c.active === false);
+
+  if (!active.length && !inactive.length) {
     area.innerHTML = `
       <div class="empty-state">
         <div class="icon">🔍</div>
@@ -1233,15 +1270,13 @@ function renderList() {
     return;
   }
 
-  // When filtering by a specific day, group by client type
-  // When showing all days, group by visit day
   let html = '';
 
+  // ── Active clients ──
   if (state.filterDay === 'all') {
-    // Group by day order — a client appears in each day it belongs to
     const shown = new Set();
     VISIT_DAYS.forEach(day => {
-      const dayClients = filtered.filter(c => {
+      const dayClients = active.filter(c => {
         const cDays = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
         return cDays.includes(day.id);
       });
@@ -1252,8 +1287,7 @@ function renderList() {
       </div>`;
       html += dayClients.map(c => { shown.add(c.id); return clientCard(c); }).join('');
     });
-    // Unassigned
-    const unassigned = filtered.filter(c => {
+    const unassigned = active.filter(c => {
       const cDays = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
       return !cDays.length;
     });
@@ -1262,12 +1296,31 @@ function renderList() {
       html += unassigned.map(c => clientCard(c)).join('');
     }
   } else {
-    // Flat list sorted by name
-    filtered.sort((a,b) => (a.name||'').localeCompare(b.name||''));
-    html = filtered.map(c => clientCard(c)).join('');
+    active.sort((a,b) => (a.name||'').localeCompare(b.name||''));
+    html = active.map(c => clientCard(c)).join('');
+  }
+
+  // ── Inactive clients toggle ──
+  if (inactive.length) {
+    html += `<div class="show-inactive-toggle" onclick="toggleShowInactive()">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        ${state.showInactive
+          ? '<polyline points="18 15 12 9 6 15"/>'
+          : '<polyline points="6 9 12 15 18 9"/>'}
+      </svg>
+      ${state.showInactive ? 'Hide' : 'Show'} ${inactive.length} inactive client${inactive.length !== 1 ? 's' : ''}
+    </div>`;
+    if (state.showInactive) {
+      html += inactive.map(c => clientCard(c)).join('');
+    }
   }
 
   area.innerHTML = html || `<div class="empty-state"><div class="icon">📭</div><h3>No clients</h3></div>`;
+}
+
+function toggleShowInactive() {
+  state.showInactive = !state.showInactive;
+  renderList();
 }
 
 function clientCard(c) {
@@ -1302,11 +1355,13 @@ function clientCard(c) {
       </div>`;
   }
 
+  const isInactive = c.active === false;
+
   return `
-    <div class="client-card" onclick="openDetail('${c.id}')">
-      <div class="card-avatar" style="background:${CLIENT.color}">${initials}</div>
+    <div class="client-card${isInactive ? ' inactive' : ''}" onclick="openDetail('${c.id}')">
+      <div class="card-avatar" style="background:${isInactive ? '#9ca3af' : CLIENT.color}">${initials}</div>
       <div class="card-body">
-        <div class="card-name">${esc(c.name)}</div>
+        <div class="card-name">${esc(c.name)} ${isInactive ? '<span class="inactive-badge">Inactive</span>' : ''}</div>
         <div class="card-addr">${esc(addr) || 'No address'}</div>
         ${c.contact ? `<div class="card-meta"><span class="card-phone">${esc(c.contact)}</span></div>` : ''}
       </div>
@@ -1507,7 +1562,15 @@ function openDetail(id) {
     </div>
     <div class="btn-row">
       <button class="btn btn-ghost" onclick="closeModal('detailModal')">Close</button>
-      <button class="btn btn-primary" onclick="editClient('${c.id}')">Edit</button>
+      <button class="btn btn-primary" onclick="editClient('${c.id}')">
+        ✏️ Edit Client
+      </button>
+    </div>
+    <div style="margin-top:10px;">
+      <button class="btn ${c.active === false ? 'btn-reactivate' : 'btn-deactivate'}" style="width:100%;"
+        onclick="toggleActive('${c.id}')">
+        ${c.active === false ? '✅ Reactivate Client' : '⏸ Deactivate Client'}
+      </button>
     </div>
   `;
   openModal('detailModal');
