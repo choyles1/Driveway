@@ -779,7 +779,52 @@ animation: pulse 1s infinite;
 .sync-dot.error { background: var(–red); }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
 
-/* ── LOADING ── */
+/* ── VISITED TODAY ── */
+.visit-check-btn {
+width: 30px; height: 30px;
+border-radius: 50%;
+border: 2px solid var(–border);
+background: var(–surface2);
+display: flex; align-items: center; justify-content: center;
+cursor: pointer; flex-shrink: 0;
+transition: all .15s;
+align-self: center;
+}
+.visit-check-btn:active { transform: scale(.88); }
+.visit-check-btn.visited {
+background: var(–green);
+border-color: var(–green);
+}
+.visit-check-btn svg { display: none; }
+.visit-check-btn.visited svg { display: block; }
+
+.client-card.visited-card {
+opacity: 0.5;
+}
+.visited-badge {
+font-size: 9px; font-weight: 700;
+padding: 2px 7px; border-radius: 999px;
+background: rgba(22,163,74,0.12);
+color: var(–green);
+letter-spacing: .04em;
+text-transform: uppercase;
+border: 1px solid rgba(22,163,74,0.25);
+}
+.clear-visits-btn {
+font-size: 11px; font-weight: 600;
+color: var(–green);
+background: rgba(22,163,74,0.1);
+border: 1px solid rgba(22,163,74,0.25);
+border-radius: 10px;
+padding: 5px 10px;
+cursor: pointer;
+white-space: nowrap;
+transition: all .15s;
+display: none;
+}
+.clear-visits-btn.visible { display: block; }
+.clear-visits-btn:active { background: rgba(22,163,74,0.2); }
+
 .spinner {
 width: 20px; height: 20px;
 border: 2px solid var(–border);
@@ -802,6 +847,7 @@ flex-direction: column; gap: 14px; color: var(–text3); font-size: 13px;
   <div class="topbar" id="mainTopbar">
     <div class="topbar-logo">Drive<span>WAY</span></div>
     <div class="topbar-actions">
+      <div class="clear-visits-btn" id="clearVisitsBtn" onclick="clearAllVisits()">✓ Clear Visits</div>
       <div class="icon-btn" id="syncBtn" title="Sync">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
       </div>
@@ -1125,6 +1171,7 @@ let state = {
   filterDay: 'all',
   search: '',
   showInactive: false,
+  visited: new Set(), // client ids visited today — device only, not synced
   apiKey: localStorage.getItem('ct_apiKey') || '',
   binId: localStorage.getItem('ct_binId') || '',
 };
@@ -1283,16 +1330,26 @@ function renderList() {
     return;
   }
 
+  // Sort: unvisited first, visited last within any group
+  const sortVisited = arr => [
+    ...arr.filter(c => !state.visited.has(c.id)),
+    ...arr.filter(c => state.visited.has(c.id)),
+  ];
+
+  // Update clear visits button visibility
+  const clearBtn = document.getElementById('clearVisitsBtn');
+  if (clearBtn) clearBtn.classList.toggle('visible', state.visited.size > 0);
+
   let html = '';
 
   // ── Active clients ──
   if (state.filterDay === 'all') {
     const shown = new Set();
     VISIT_DAYS.forEach(day => {
-      const dayClients = active.filter(c => {
+      const dayClients = sortVisited(active.filter(c => {
         const cDays = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
         return cDays.includes(day.id);
-      });
+      }));
       if (!dayClients.length) return;
       html += `<div class="section-label" style="color:${day.color}">
         <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${day.color};margin-right:5px;vertical-align:middle;"></span>
@@ -1300,17 +1357,17 @@ function renderList() {
       </div>`;
       html += dayClients.map(c => { shown.add(c.id); return clientCard(c); }).join('');
     });
-    const unassigned = active.filter(c => {
+    const unassigned = sortVisited(active.filter(c => {
       const cDays = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
       return !cDays.length;
-    });
+    }));
     if (unassigned.length) {
       html += `<div class="section-label">Unassigned <span style="color:var(--text3)">(${unassigned.length})</span></div>`;
       html += unassigned.map(c => clientCard(c)).join('');
     }
   } else {
-    active.sort((a,b) => (a.name||'').localeCompare(b.name||''));
-    html = active.map(c => clientCard(c)).join('');
+    const sorted = sortVisited(active.sort((a,b) => (a.name||'').localeCompare(b.name||'')));
+    html = sorted.map(c => clientCard(c)).join('');
   }
 
   // ── Inactive clients toggle ──
@@ -1334,6 +1391,23 @@ function renderList() {
 function toggleShowInactive() {
   state.showInactive = !state.showInactive;
   renderList();
+}
+
+function toggleVisited(e, id) {
+  e.stopPropagation();
+  if (state.visited.has(id)) {
+    state.visited.delete(id);
+  } else {
+    state.visited.add(id);
+  }
+  renderList();
+}
+
+function clearAllVisits() {
+  if (state.visited.size === 0) return;
+  state.visited.clear();
+  renderList();
+  toast('✓ All visits cleared');
 }
 
 function clientCard(c) {
@@ -1369,17 +1443,25 @@ function clientCard(c) {
   }
 
   const isInactive = c.active === false;
+  const isVisited  = state.visited.has(c.id);
 
   return `
-    <div class="client-card${isInactive ? ' inactive' : ''}" onclick="openDetail('${c.id}')">
+    <div class="client-card${isInactive ? ' inactive' : ''}${isVisited ? ' visited-card' : ''}" onclick="openDetail('${c.id}')">
       <div class="card-avatar" style="background:${isInactive ? '#9ca3af' : CLIENT.color}">${initials}</div>
       <div class="card-body">
-        <div class="card-name">${esc(c.name)} ${isInactive ? '<span class="inactive-badge">Inactive</span>' : ''}</div>
+        <div class="card-name">
+          ${esc(c.name)}
+          ${isInactive ? '<span class="inactive-badge">Inactive</span>' : ''}
+          ${isVisited  ? '<span class="visited-badge">✓ Visited</span>' : ''}
+        </div>
         <div class="card-addr">${esc(addr) || 'No address'}</div>
         ${c.contact ? `<div class="card-meta"><span class="card-phone">${esc(c.contact)}</span></div>` : ''}
       </div>
       <div class="card-actions">
         ${dayBadgesHtml}
+        <div class="visit-check-btn ${isVisited ? 'visited' : ''}" onclick="toggleVisited(event,'${c.id}')">
+          <svg width="13" height="13" fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
         <a class="map-btn" href="https://maps.google.com/?q=${mapsUrl}" target="_blank" onclick="event.stopPropagation()">
           <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </a>
