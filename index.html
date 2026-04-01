@@ -384,12 +384,15 @@ background: var(–accent); border-color: var(–accent);
 
 /* ── ROUTE FLOATING BAR ── */
 .route-bar {
-width: 100%;
+width: calc(100% - 24px);
+margin: 0 12px;
 background: #ffffff;
+border: 1px solid rgba(29,110,245,.2);
 border-top: 2px solid var(–accent);
-padding: 12px 16px;
+border-radius: 0 0 16px 16px;
+padding: 12px 14px;
 z-index: 25;
-box-shadow: 0 -4px 16px rgba(0,0,0,.08);
+box-shadow: 0 4px 16px rgba(0,0,0,.08);
 display: none;
 flex-shrink: 0;
 }
@@ -1782,18 +1785,17 @@ function launchGoogleMapsRoute() {
   const addresses = clients.map(c => [c.street, c.city, c.zip].filter(Boolean).join(', '));
 
   if (addresses.length === 1) {
-    // Single stop — just navigate to it
+    // Single stop — navigate from current location
     const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(addresses[0])}&travelmode=driving`;
     window.open(url, '_blank');
     return;
   }
 
-  // Multi-stop: origin = first, destination = last, waypoints = middle stops
-  const origin = encodeURIComponent(addresses[0]);
+  // Multi-stop: origin = current location, destination = last, waypoints = all stops
   const destination = encodeURIComponent(addresses[addresses.length - 1]);
-  const waypoints = addresses.slice(1, -1).map(a => encodeURIComponent(a)).join('|');
+  const waypoints = addresses.slice(0, -1).map(a => encodeURIComponent(a)).join('|');
 
-  let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=driving`;
+  let url = `https://www.google.com/maps/dir/?api=1&origin=My+Location&destination=${destination}&travelmode=driving`;
   if (waypoints) url += `&waypoints=${waypoints}`;
 
   window.open(url, '_blank');
