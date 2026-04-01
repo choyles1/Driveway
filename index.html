@@ -5,30 +5,29 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
 <meta name="apple-mobile-web-app-title" content="DriveWAY"/>
 <title>DriveWAY</title>
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%230d0f14'/%3E%3C!-- Road vanishing point --%3E%3Cpolygon points='256,108 340,404 172,404' fill='%231e2330'/%3E%3C!-- Road edge lines --%3E%3Cline x1='256' y1='108' x2='172' y2='404' stroke='%234f9cf9' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='256' y1='108' x2='340' y2='404' stroke='%234f9cf9' stroke-width='6' stroke-linecap='round'/%3E%3C!-- Center dashes --%3E%3Cline x1='256' y1='155' x2='256' y2='200' stroke='%23f5a623' stroke-width='8' stroke-linecap='round'/%3E%3Cline x1='256' y1='225' x2='256' y2='270' stroke='%23f5a623' stroke-width='8' stroke-linecap='round'/%3E%3Cline x1='256' y1='295' x2='256' y2='340' stroke='%23f5a623' stroke-width='8' stroke-linecap='round'/%3E%3C!-- Location pin at horizon --%3E%3Ccircle cx='256' cy='100' r='28' fill='%234f9cf9'/%3E%3Ccircle cx='256' cy='96' r='11' fill='%230d0f14'/%3E%3Cpolygon points='256,132 241,108 271,108' fill='%234f9cf9'/%3E%3C/svg%3E"/>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%230d0f14'/%3E%3Cpolygon points='256,108 340,404 172,404' fill='%231e2330'/%3E%3Cline x1='256' y1='108' x2='172' y2='404' stroke='%234f9cf9' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='256' y1='108' x2='340' y2='404' stroke='%234f9cf9' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='256' y1='155' x2='256' y2='200' stroke='%23f5a623' stroke-width='8' stroke-linecap='round'/%3E%3Cline x1='256' y1='225' x2='256' y2='270' stroke='%23f5a623' stroke-width='8' stroke-linecap='round'/%3E%3Cline x1='256' y1='295' x2='256' y2='340' stroke='%23f5a623' stroke-width='8' stroke-linecap='round'/%3E%3Ccircle cx='256' cy='100' r='28' fill='%234f9cf9'/%3E%3Ccircle cx='256' cy='96' r='11' fill='%230d0f14'/%3E%3Cpolygon points='256,132 241,108 271,108' fill='%234f9cf9'/%3E%3C/svg%3E"/>
+<link rel="apple-touch-icon" id="appIcon" href=""/>
+<link rel="icon" id="favicon" href=""/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
 <style>
-:root {
---bg: #0d0f14;
---surface: #161a22;
---surface2: #1e2330;
---border: rgba(255,255,255,0.07);
---accent: #4f9cf9;
---accent2: #7b61ff;
---green: #34c98a;
---orange: #f5a623;
---red: #f25c5c;
---text: #eef1f7;
---text2: #8891a8;
---text3: #555e72;
---radius: 16px;
---safe-top: env(safe-area-inset-top, 0px);
---safe-bottom: env(safe-area-inset-bottom, 0px);
-}
+  :root {
+    --bg: #f5f6fa;
+    --surface: #ffffff;
+    --surface2: #eef0f6;
+    --border: rgba(0,0,0,0.09);
+    --accent: #1d6ef5;
+    --green: #16a34a;
+    --orange: #d97706;
+    --red: #dc2626;
+    --text: #111827;
+    --text2: #4b5563;
+    --text3: #9ca3af;
+    --radius: 16px;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
 
 - { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
@@ -287,14 +286,14 @@ flex-shrink: 0;
 }
 .phone-action-btn:active { transform: scale(.88); }
 .phone-action-call {
-background: rgba(52,201,138,.15);
+background: rgba(22,163,74,.12);
 color: var(–green);
-border: 1px solid rgba(52,201,138,.25);
+border: 1px solid rgba(22,163,74,.25);
 }
 .phone-action-sms {
-background: rgba(79,156,249,.15);
+background: rgba(29,110,245,.12);
 color: var(–accent);
-border: 1px solid rgba(79,156,249,.25);
+border: 1px solid rgba(29,110,245,.25);
 }
 
 /* ── MULTI DAY BADGES on card ── */
@@ -312,8 +311,8 @@ letter-spacing: .04em;
 display: none;
 align-items: center; justify-content: space-between;
 padding: 14px 20px 10px;
-background: #0d1525;
-border-bottom: 1px solid rgba(79,156,249,.2);
+background: #e8f0fe;
+border-bottom: 1px solid rgba(29,110,245,.2);
 flex-shrink: 0;
 position: relative;
 z-index: 10;
@@ -335,13 +334,13 @@ cursor: pointer; font-size: 17px; transition: all .15s;
 
 .client-card.selected-stop {
 border-color: var(–accent);
-background: rgba(79,156,249,.08);
+background: rgba(29,110,245,.06);
 }
 .stop-check {
 width: 22px; height: 22px;
 border-radius: 7px;
 border: 2px solid var(–border);
-background: var(–bg);
+background: var(–surface2);
 display: flex; align-items: center; justify-content: center;
 flex-shrink: 0; transition: all .15s; align-self: center;
 }
@@ -356,12 +355,12 @@ background: var(–accent); border-color: var(–accent);
 position: fixed;
 bottom: calc(70px + var(–safe-bottom) + 10px);
 left: 16px; right: 16px;
-background: linear-gradient(135deg, #1a2540, #0f1a35);
-border: 1px solid rgba(79,156,249,.35);
+background: #ffffff;
+border: 1px solid rgba(29,110,245,.25);
 border-radius: 20px;
 padding: 14px 16px;
 z-index: 30;
-box-shadow: 0 8px 32px rgba(0,0,0,.55), 0 0 0 1px rgba(79,156,249,.12);
+box-shadow: 0 8px 32px rgba(0,0,0,.12), 0 0 0 1px rgba(29,110,245,.1);
 transform: translateY(140px);
 opacity: 0;
 transition: transform .35s cubic-bezier(.32,.72,0,1), opacity .25s;
@@ -382,14 +381,14 @@ margin-bottom: 12px;
 .route-stops-list::-webkit-scrollbar { display: none; }
 .route-stop-item {
 display: flex; align-items: center; gap: 9px;
-background: rgba(255,255,255,.05);
+background: #f5f6fa;
 border-radius: 10px; padding: 8px 10px;
 cursor: grab; user-select: none; transition: background .15s;
 border: 1px solid transparent;
 }
 .route-stop-item:active { cursor: grabbing; }
 .route-stop-item.dragging { opacity: .45; }
-.route-stop-item.drag-over { background: rgba(79,156,249,.18); border-color: var(–accent); }
+.route-stop-item.drag-over { background: rgba(29,110,245,.08); border-color: var(–accent); }
 .rsi-num {
 width: 20px; height: 20px; border-radius: 6px;
 background: var(–accent); color: #fff;
@@ -492,8 +491,8 @@ display: flex; flex-direction: column; gap: 7px; align-items: flex-end; flex-shr
 .map-btn {
 width: 32px; height: 32px;
 border-radius: 10px;
-background: rgba(79,156,249,.15);
-border: 1px solid rgba(79,156,249,.3);
+background: rgba(29,110,245,.1);
+border: 1px solid rgba(29,110,245,.2);
 color: var(–accent);
 display: flex; align-items: center; justify-content: center;
 font-size: 15px;
@@ -515,7 +514,7 @@ color: var(–text3);
 /* ── BOTTOM NAV ── */
 .bottom-nav {
 position: fixed; bottom: 0; left: 0; right: 0;
-background: rgba(13,15,20,.92);
+background: rgba(255,255,255,0.95);
 backdrop-filter: blur(20px);
 -webkit-backdrop-filter: blur(20px);
 border-top: 1px solid var(–border);
@@ -754,217 +753,217 @@ flex-direction: column; gap: 14px; color: var(–text3); font-size: 13px;
 </head>
 <body>
 <div id="app">
-<!-- TOP BAR -->
-<div class="topbar" id="mainTopbar">
-<div class="topbar-logo">Drive<span>WAY</span></div>
-<div class="topbar-actions">
-<div class="icon-btn" id="syncBtn" title="Sync">
-<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
-</div>
-<div class="icon-btn" id="routeModeBtn" title="Plan Route" onclick="enterRouteMode()">
-<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="18" r="2"/><path d="M7 6h4a4 4 0 014 4v4a4 4 0 004 4M7 18h4"/></svg>
-</div>
-<div class="icon-btn accent" id="addBtn">
-<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-</div>
-</div>
-</div>
+  <!-- TOP BAR -->
+  <div class="topbar" id="mainTopbar">
+    <div class="topbar-logo">Drive<span>WAY</span></div>
+    <div class="topbar-actions">
+      <div class="icon-btn" id="syncBtn" title="Sync">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+      </div>
+      <div class="icon-btn" id="routeModeBtn" title="Plan Route" onclick="enterRouteMode()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="18" r="2"/><path d="M7 6h4a4 4 0 014 4v4a4 4 0 004 4M7 18h4"/></svg>
+      </div>
+      <div class="icon-btn accent" id="addBtn">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+    </div>
+  </div>
 
-<!-- ROUTE MODE TOPBAR -->
+  <!-- ROUTE MODE TOPBAR -->
 
-<div class="route-topbar" id="routeTopbar">
-<div class="route-topbar-left">
-<div class="route-cancel-btn" onclick="exitRouteMode()">
-<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-</div>
-<div>
-<div class="route-topbar-title">Plan Route</div>
-<div class="route-topbar-count" id="routeTopbarCount">Tap clients to add stops</div>
-</div>
-</div>
-</div>
+  <div class="route-topbar" id="routeTopbar">
+    <div class="route-topbar-left">
+      <div class="route-cancel-btn" onclick="exitRouteMode()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <div>
+        <div class="route-topbar-title">Plan Route</div>
+        <div class="route-topbar-count" id="routeTopbarCount">Tap clients to add stops</div>
+      </div>
+    </div>
+  </div>
 
-<!-- SEARCH -->
+  <!-- SEARCH -->
 
-<div class="search-bar">
-<div class="search-wrap">
-<svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-<input type="search" id="searchInput" placeholder="Search clients…"/>
-</div>
-</div>
+  <div class="search-bar">
+    <div class="search-wrap">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" id="searchInput" placeholder="Search clients…"/>
+    </div>
+  </div>
 
-<!-- DAY STRIP -->
+  <!-- DAY STRIP -->
 
-<div class="day-strip" id="dayStrip"></div>
+  <div class="day-strip" id="dayStrip"></div>
 
-<!-- MAIN CONTENT -->
+  <!-- MAIN CONTENT -->
 
-<div class="list-area" id="listArea">
-<div class="loading-full"><div class="spinner"></div><span>Loading clients…</span></div>
-</div>
-<!-- ROUTE FLOATING BAR -->
-<div class="route-bar" id="routeBar">
-<div class="route-bar-top">
-<span class="route-bar-label">🗺 Route Stops</span>
-<span class="route-bar-hint">Hold &amp; drag to reorder</span>
-</div>
-<div class="route-stops-list" id="routeStopsList"></div>
-<button class="route-go-btn" id="routeGoBtn" onclick="launchGoogleMapsRoute()" disabled>
-<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-Open Route in Google Maps
-</button>
-</div>
+  <div class="list-area" id="listArea">
+    <div class="loading-full"><div class="spinner"></div><span>Loading clients…</span></div>
+  </div>
+  <!-- ROUTE FLOATING BAR -->
+  <div class="route-bar" id="routeBar">
+    <div class="route-bar-top">
+      <span class="route-bar-label">🗺 Route Stops</span>
+      <span class="route-bar-hint">Hold &amp; drag to reorder</span>
+    </div>
+    <div class="route-stops-list" id="routeStopsList"></div>
+    <button class="route-go-btn" id="routeGoBtn" onclick="launchGoogleMapsRoute()" disabled>
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Open Route in Google Maps
+    </button>
+  </div>
 </div>
 <div class="bottom-nav">
-<div class="nav-tab active" data-tab="clients" onclick="switchTab('clients')">
-<svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-Clients
-</div>
-<div class="nav-tab" data-tab="settings" onclick="switchTab('settings')">
-<svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-Settings
-</div>
+  <div class="nav-tab active" data-tab="clients" onclick="switchTab('clients')">
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+    Clients
+  </div>
+  <div class="nav-tab" data-tab="settings" onclick="switchTab('settings')">
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+    Settings
+  </div>
 </div>
 
 <!-- ADD / EDIT MODAL -->
 
 <div class="modal-overlay" id="addModal">
-<div class="modal-sheet">
-<div class="sheet-handle"></div>
-<div class="sheet-title" id="modalTitle">New Client</div>
+  <div class="modal-sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title" id="modalTitle">New Client</div>
 
 ```
 <div class="form-group">
-<label class="form-label">Client Name *</label>
-<input class="form-input" id="f_name" placeholder="e.g. Sunrise Hospice – Katy" type="text"/>
+  <label class="form-label">Client Name *</label>
+  <input class="form-input" id="f_name" placeholder="e.g. Sunrise Hospice – Katy" type="text"/>
 </div>
 
 <div class="form-group">
-<label class="form-label">Street Address *</label>
-<input class="form-input" id="f_street" placeholder="1234 Oak St" type="text"/>
+  <label class="form-label">Street Address *</label>
+  <input class="form-input" id="f_street" placeholder="1234 Oak St" type="text"/>
 </div>
 <div style="display:grid;grid-template-columns:2fr 1fr;gap:10px;margin-bottom:16px;">
-<div>
-<label class="form-label">City *</label>
-<input class="form-input" id="f_city" placeholder="Katy" type="text"/>
-</div>
-<div>
-<label class="form-label">ZIP</label>
-<input class="form-input" id="f_zip" placeholder="77450" type="text" inputmode="numeric"/>
-</div>
-</div>
-
-<div class="form-group">
-<label class="form-label">Primary Contact Name</label>
-<input class="form-input" id="f_contact" placeholder="Jane Smith" type="text"/>
+  <div>
+    <label class="form-label">City *</label>
+    <input class="form-input" id="f_city" placeholder="Katy" type="text"/>
+  </div>
+  <div>
+    <label class="form-label">ZIP</label>
+    <input class="form-input" id="f_zip" placeholder="77450" type="text" inputmode="numeric"/>
+  </div>
 </div>
 
 <div class="form-group">
-<label class="form-label">Phone Numbers</label>
-<div class="phone-list" id="phoneList"></div>
-<div class="add-phone-btn" onclick="addPhoneEntry()">
-<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-Add Phone Number
-</div>
+  <label class="form-label">Primary Contact Name</label>
+  <input class="form-input" id="f_contact" placeholder="Jane Smith" type="text"/>
 </div>
 
 <div class="form-group">
-<label class="form-label">Email</label>
-<input class="form-input" id="f_email" placeholder="jane@facility.com" type="email"/>
+  <label class="form-label">Phone Numbers</label>
+  <div class="phone-list" id="phoneList"></div>
+  <div class="add-phone-btn" onclick="addPhoneEntry()">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    Add Phone Number
+  </div>
 </div>
 
 <div class="form-group">
-<label class="form-label">Visit Days <span style="color:var(--text3);font-weight:400;font-size:10px;text-transform:none;letter-spacing:0">(select all that apply)</span></label>
-<div class="day-selector" id="daySelector"></div>
+  <label class="form-label">Email</label>
+  <input class="form-input" id="f_email" placeholder="jane@facility.com" type="email"/>
 </div>
 
 <div class="form-group">
-<label class="form-label">Notes</label>
-<textarea class="form-input" id="f_notes" placeholder="Admission criteria, best time to visit…" rows="3" style="resize:none;"></textarea>
+  <label class="form-label">Visit Days <span style="color:var(--text3);font-weight:400;font-size:10px;text-transform:none;letter-spacing:0">(select all that apply)</span></label>
+  <div class="day-selector" id="daySelector"></div>
+</div>
+
+<div class="form-group">
+  <label class="form-label">Notes</label>
+  <textarea class="form-input" id="f_notes" placeholder="Admission criteria, best time to visit…" rows="3" style="resize:none;"></textarea>
 </div>
 
 <div class="btn-row">
-<button class="btn btn-ghost" onclick="closeModal('addModal')">Cancel</button>
-<button class="btn btn-primary" onclick="saveClient()">Save Client</button>
+  <button class="btn btn-ghost" onclick="closeModal('addModal')">Cancel</button>
+  <button class="btn btn-primary" onclick="saveClient()">Save Client</button>
 </div>
 <div id="deleteRow" style="display:none;margin-top:10px;">
-<button class="btn btn-danger" style="width:100%;" onclick="deleteClient()">Delete Client</button>
+  <button class="btn btn-danger" style="width:100%;" onclick="deleteClient()">Delete Client</button>
 </div>
 ```
 
-</div>
+  </div>
 </div>
 
 <!-- DETAIL MODAL -->
 
 <div class="modal-overlay" id="detailModal">
-<div class="modal-sheet" id="detailSheet"></div>
+  <div class="modal-sheet" id="detailSheet"></div>
 </div>
 
 <!-- SETTINGS MODAL -->
 
 <div class="modal-overlay" id="settingsModal">
-<div class="modal-sheet">
-<div class="sheet-handle"></div>
-<div class="sheet-title">Settings</div>
+  <div class="modal-sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">Settings</div>
 
 ```
 <p style="font-size:12px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
-Connect your JSONBin account to sync clients across devices. Create a free bin at <strong style="color:var(--accent)">jsonbin.io</strong> and paste your credentials below.
+  Connect your JSONBin account to sync clients across devices. Create a free bin at <strong style="color:var(--accent)">jsonbin.io</strong> and paste your credentials below.
 </p>
 
 <div class="settings-section">
-<div class="settings-row">
-<div class="settings-icon">🔑</div>
-<div class="settings-label">
-<div class="settings-title">API Key</div>
-<div class="settings-sub">Master or Access key from JSONBin</div>
-</div>
-</div>
-<div style="padding:0 15px 14px;">
-<input class="form-input" id="s_apiKey" placeholder="$2a$10$…" type="password"/>
-</div>
+  <div class="settings-row">
+    <div class="settings-icon">🔑</div>
+    <div class="settings-label">
+      <div class="settings-title">API Key</div>
+      <div class="settings-sub">Master or Access key from JSONBin</div>
+    </div>
+  </div>
+  <div style="padding:0 15px 14px;">
+    <input class="form-input" id="s_apiKey" placeholder="$2a$10$…" type="password"/>
+  </div>
 
-<div class="settings-row" style="border-top:1px solid var(--border)">
-<div class="settings-icon">🗂️</div>
-<div class="settings-label">
-<div class="settings-title">Bin ID</div>
-<div class="settings-sub">The bin that stores your clients</div>
-</div>
-</div>
-<div style="padding:0 15px 14px;">
-<input class="form-input" id="s_binId" placeholder="6612abc1…" type="text"/>
-</div>
+  <div class="settings-row" style="border-top:1px solid var(--border)">
+    <div class="settings-icon">🗂️</div>
+    <div class="settings-label">
+      <div class="settings-title">Bin ID</div>
+      <div class="settings-sub">The bin that stores your clients</div>
+    </div>
+  </div>
+  <div style="padding:0 15px 14px;">
+    <input class="form-input" id="s_binId" placeholder="6612abc1…" type="text"/>
+  </div>
 </div>
 
 <div class="btn-row" style="margin-bottom:16px;">
-<button class="btn btn-ghost" onclick="closeModal('settingsModal')">Cancel</button>
-<button class="btn btn-primary" onclick="saveSettings()">Save & Sync</button>
+  <button class="btn btn-ghost" onclick="closeModal('settingsModal')">Cancel</button>
+  <button class="btn btn-primary" onclick="saveSettings()">Save & Sync</button>
 </div>
 
 <div class="settings-section">
-<div class="settings-row">
-<div class="settings-icon">📊</div>
-<div class="settings-label">
-<div class="settings-title">Total Clients</div>
-</div>
-<span class="settings-count" id="totalCount">0</span>
-</div>
-<div class="settings-row" id="syncStatus">
-<div class="settings-icon">☁️</div>
-<div class="settings-label">
-<div class="settings-title">Sync Status</div>
-<div class="settings-sub" id="syncStatusText">Not configured</div>
-</div>
-</div>
+  <div class="settings-row">
+    <div class="settings-icon">📊</div>
+    <div class="settings-label">
+      <div class="settings-title">Total Clients</div>
+    </div>
+    <span class="settings-count" id="totalCount">0</span>
+  </div>
+  <div class="settings-row" id="syncStatus">
+    <div class="settings-icon">☁️</div>
+    <div class="settings-label">
+      <div class="settings-title">Sync Status</div>
+      <div class="settings-sub" id="syncStatusText">Not configured</div>
+    </div>
+  </div>
 </div>
 
 <div style="text-align:center;margin-top:18px;">
-<p style="font-size:11px;color:var(--text3);">DriveWAY v1.0 · Built for healthcare sales rounds</p>
+  <p style="font-size:11px;color:var(--text3);">DriveWAY v1.0 · Built for healthcare sales rounds</p>
 </div>
 ```
 
-</div>
+  </div>
 </div>
 
 <!-- TOAST -->
@@ -973,115 +972,198 @@ Connect your JSONBin account to sync clients across devices. Create a free bin a
 
 <script>
 // ═══════════════════════════════════════════════
+// ICON GENERATOR — builds a real PNG for iPhone home screen
+// ═══════════════════════════════════════════════
+(function generateIcon() {
+  const S = 512, R = 112;
+  const c = document.createElement('canvas');
+  c.width = c.height = S;
+  const g = c.getContext('2d');
+
+  // Rounded rect background
+  g.beginPath();
+  g.moveTo(R, 0); g.lineTo(S-R, 0);
+  g.quadraticCurveTo(S, 0, S, R);
+  g.lineTo(S, S-R); g.quadraticCurveTo(S, S, S-R, S);
+  g.lineTo(R, S); g.quadraticCurveTo(0, S, 0, S-R);
+  g.lineTo(0, R); g.quadraticCurveTo(0, 0, R, 0);
+  g.closePath();
+  g.fillStyle = '#1d6ef5';
+  g.fill();
+
+  // Subtle inner gradient
+  const grad = g.createRadialGradient(S/2, S*0.3, 0, S/2, S/2, S*0.7);
+  grad.addColorStop(0, 'rgba(255,255,255,0.18)');
+  grad.addColorStop(1, 'rgba(0,0,0,0.12)');
+  g.fillStyle = grad;
+  g.fill();
+
+  // Road surface (white trapezoid)
+  g.beginPath();
+  g.moveTo(256, 130);
+  g.lineTo(370, 420);
+  g.lineTo(142, 420);
+  g.closePath();
+  g.fillStyle = 'rgba(255,255,255,0.15)';
+  g.fill();
+
+  // Road edge lines (white)
+  g.strokeStyle = '#ffffff';
+  g.lineWidth = 10;
+  g.lineCap = 'round';
+  g.beginPath(); g.moveTo(256,130); g.lineTo(142,420); g.stroke();
+  g.beginPath(); g.moveTo(256,130); g.lineTo(370,420); g.stroke();
+
+  // Center dashes (yellow, perspective-scaled)
+  g.strokeStyle = '#fbbf24';
+  g.lineWidth = 10;
+  const dashes = [[170,210],[225,280],[295,375]];
+  dashes.forEach(([y1,y2]) => {
+    g.beginPath(); g.moveTo(256, y1); g.lineTo(256, y2); g.stroke();
+  });
+
+  // Pin shadow
+  g.beginPath();
+  g.ellipse(256, 150, 20, 7, 0, 0, Math.PI*2);
+  g.fillStyle = 'rgba(0,0,0,0.2)';
+  g.fill();
+
+  // Pin body (white circle)
+  g.beginPath();
+  g.arc(256, 110, 38, 0, Math.PI*2);
+  g.fillStyle = '#ffffff';
+  g.fill();
+
+  // Pin inner dot (blue)
+  g.beginPath();
+  g.arc(256, 106, 15, 0, Math.PI*2);
+  g.fillStyle = '#1d6ef5';
+  g.fill();
+
+  // Pin tail (white triangle)
+  g.beginPath();
+  g.moveTo(256, 155);
+  g.lineTo(234, 122);
+  g.lineTo(278, 122);
+  g.closePath();
+  g.fillStyle = '#ffffff';
+  g.fill();
+
+  const png = c.toDataURL('image/png');
+  document.getElementById('appIcon').href = png;
+  document.getElementById('favicon').href = png;
+})();
+
+// ═══════════════════════════════════════════════
 // CONFIG & STATE
 // ═══════════════════════════════════════════════
 const CLIENT_TYPES = [
-{ id: 'client', label: 'Client', color: '#4f9cf9', bg: 'rgba(79,156,249,.15)' },
+  { id: 'client', label: 'Client', color: '#4f9cf9', bg: 'rgba(79,156,249,.15)' },
 ];
 
 const VISIT_DAYS = [
-{ id: 'mon', label: 'Monday', short: 'MON', color: '#f25c5c', bg: 'rgba(242,92,92,.15)' },
-{ id: 'tue', label: 'Tuesday', short: 'TUE', color: '#f5a623', bg: 'rgba(245,166,35,.15)' },
-{ id: 'wed', label: 'Wednesday', short: 'WED', color: '#f9e040', bg: 'rgba(249,224,64,.15)' },
-{ id: 'thu', label: 'Thursday', short: 'THU', color: '#34c98a', bg: 'rgba(52,201,138,.15)' },
-{ id: 'fri', label: 'Friday', short: 'FRI', color: '#4f9cf9', bg: 'rgba(79,156,249,.15)' },
-{ id: 'sat', label: 'Saturday', short: 'SAT', color: '#a78bfa', bg: 'rgba(167,139,250,.15)' },
-{ id: 'sun', label: 'Sunday', short: 'SUN', color: '#f472b6', bg: 'rgba(244,114,182,.15)' },
+  { id: 'mon', label: 'Monday',    short: 'MON', color: '#f25c5c', bg: 'rgba(242,92,92,.15)' },
+  { id: 'tue', label: 'Tuesday',   short: 'TUE', color: '#f5a623', bg: 'rgba(245,166,35,.15)' },
+  { id: 'wed', label: 'Wednesday', short: 'WED', color: '#f9e040', bg: 'rgba(249,224,64,.15)' },
+  { id: 'thu', label: 'Thursday',  short: 'THU', color: '#34c98a', bg: 'rgba(52,201,138,.15)' },
+  { id: 'fri', label: 'Friday',    short: 'FRI', color: '#4f9cf9', bg: 'rgba(79,156,249,.15)' },
+  { id: 'sat', label: 'Saturday',  short: 'SAT', color: '#a78bfa', bg: 'rgba(167,139,250,.15)' },
+  { id: 'sun', label: 'Sunday',    short: 'SUN', color: '#f472b6', bg: 'rgba(244,114,182,.15)' },
 ];
 
 const JSONBIN_BASE = 'https://api.jsonbin.io/v3/b';
 let state = {
-clients: [],
-editingId: null,
-filterType: 'all',
-filterDay: 'all',
-search: '',
-apiKey: localStorage.getItem('ct_apiKey') || '',
-binId: localStorage.getItem('ct_binId') || '',
+  clients: [],
+  editingId: null,
+  filterType: 'all',
+  filterDay: 'all',
+  search: '',
+  apiKey: localStorage.getItem('ct_apiKey') || '',
+  binId: localStorage.getItem('ct_binId') || '',
 };
 
 // ═══════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', async () => {
-buildDaySelector();
-buildDayStrip();
-document.getElementById('searchInput').addEventListener('input', e => {
-state.search = e.target.value.toLowerCase();
-renderList();
-});
-document.getElementById('s_apiKey').value = state.apiKey;
-document.getElementById('s_binId').value = state.binId;
+  buildDaySelector();
+  buildDayStrip();
+  document.getElementById('searchInput').addEventListener('input', e => {
+    state.search = e.target.value.toLowerCase();
+    renderList();
+  });
+  document.getElementById('s_apiKey').value = state.apiKey;
+  document.getElementById('s_binId').value = state.binId;
 
-if (state.apiKey && state.binId) {
-await loadFromBin();
-} else {
-document.getElementById('listArea').innerHTML = `
-<div class="empty-state">
-<div class="icon">☁️</div>
-<h3>Connect JSONBin to get started</h3>
-<p>Tap Settings → add your API key and Bin ID to sync your clients.</p>
-</div>`;
-}
+  if (state.apiKey && state.binId) {
+    await loadFromBin();
+  } else {
+    document.getElementById('listArea').innerHTML = `
+      <div class="empty-state">
+        <div class="icon">☁️</div>
+        <h3>Connect JSONBin to get started</h3>
+        <p>Tap Settings → add your API key and Bin ID to sync your clients.</p>
+      </div>`;
+  }
 });
 
 // ═══════════════════════════════════════════════
 // JSONBIN
 // ═══════════════════════════════════════════════
 async function loadFromBin() {
-if (!state.apiKey || !state.binId) return;
-setSyncState('syncing');
-try {
-const r = await fetch(`${JSONBIN_BASE}/${state.binId}/latest`, {
-headers: { 'X-Master-Key': state.apiKey, 'X-Bin-Meta': 'false' }
-});
-if (!r.ok) throw new Error(r.status);
-const data = await r.json();
-state.clients = Array.isArray(data) ? data : (data.clients || []);
-renderList();
-buildDayStrip();
-setSyncState('ok');
-} catch(e) {
-setSyncState('error');
-toast('⚠️ Sync failed – check credentials', true);
-renderList();
-}
+  if (!state.apiKey || !state.binId) return;
+  setSyncState('syncing');
+  try {
+    const r = await fetch(`${JSONBIN_BASE}/${state.binId}/latest`, {
+      headers: { 'X-Master-Key': state.apiKey, 'X-Bin-Meta': 'false' }
+    });
+    if (!r.ok) throw new Error(r.status);
+    const data = await r.json();
+    state.clients = Array.isArray(data) ? data : (data.clients || []);
+    renderList();
+    buildDayStrip();
+    setSyncState('ok');
+  } catch(e) {
+    setSyncState('error');
+    toast('⚠️ Sync failed – check credentials', true);
+    renderList();
+  }
 }
 
 async function saveToBin() {
-if (!state.apiKey || !state.binId) return;
-setSyncState('syncing');
-try {
-const r = await fetch(`${JSONBIN_BASE}/${state.binId}`, {
-method: 'PUT',
-headers: {
-'Content-Type': 'application/json',
-'X-Master-Key': state.apiKey,
-},
-body: JSON.stringify(state.clients)
-});
-if (!r.ok) throw new Error(r.status);
-setSyncState('ok');
-toast('✓ Synced to cloud');
-} catch(e) {
-setSyncState('error');
-toast('⚠️ Sync failed', true);
-}
+  if (!state.apiKey || !state.binId) return;
+  setSyncState('syncing');
+  try {
+    const r = await fetch(`${JSONBIN_BASE}/${state.binId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': state.apiKey,
+      },
+      body: JSON.stringify(state.clients)
+    });
+    if (!r.ok) throw new Error(r.status);
+    setSyncState('ok');
+    toast('✓ Synced to cloud');
+  } catch(e) {
+    setSyncState('error');
+    toast('⚠️ Sync failed', true);
+  }
 }
 
 function setSyncState(s) {
-const btn = document.getElementById('syncBtn');
-const dot = document.getElementById('syncStatusText');
-if (s === 'syncing') {
-btn.style.color = 'var(--orange)';
-if (dot) dot.textContent = 'Syncing…';
-} else if (s === 'ok') {
-btn.style.color = 'var(--green)';
-if (dot) dot.textContent = 'Synced · ' + new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-} else {
-btn.style.color = 'var(--red)';
-if (dot) dot.textContent = 'Error – check settings';
-}
+  const btn = document.getElementById('syncBtn');
+  const dot = document.getElementById('syncStatusText');
+  if (s === 'syncing') {
+    btn.style.color = 'var(--orange)';
+    if (dot) dot.textContent = 'Syncing…';
+  } else if (s === 'ok') {
+    btn.style.color = 'var(--green)';
+    if (dot) dot.textContent = 'Synced · ' + new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  } else {
+    btn.style.color = 'var(--red)';
+    if (dot) dot.textContent = 'Error – check settings';
+  }
 }
 
 document.getElementById('syncBtn').addEventListener('click', () => loadFromBin());
@@ -1090,38 +1172,38 @@ document.getElementById('syncBtn').addEventListener('click', () => loadFromBin()
 // FILTERS
 // ═══════════════════════════════════════════════
 function buildDayStrip() {
-const strip = document.getElementById('dayStrip');
-const counts = {};
-VISIT_DAYS.forEach(d => {
-counts[d.id] = state.clients.filter(c => {
-const days = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
-return days.includes(d.id);
-}).length;
-});
-const total = state.clients.length;
+  const strip = document.getElementById('dayStrip');
+  const counts = {};
+  VISIT_DAYS.forEach(d => {
+    counts[d.id] = state.clients.filter(c => {
+      const days = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
+      return days.includes(d.id);
+    }).length;
+  });
+  const total = state.clients.length;
 
-strip.innerHTML = `
-<div class="day-pill all-pill ${state.filterDay === 'all' ? 'active' : ''}"
-style="${state.filterDay === 'all' ? 'background:var(--accent);border-color:transparent;' : ''}"
-onclick="setDayFilter('all')">
-<span class="day-short" style="${state.filterDay === 'all' ? 'color:#fff' : ''}">ALL</span>
-<span class="day-count" style="${state.filterDay === 'all' ? 'color:#fff' : ''}">${total}</span>
-</div>
-${VISIT_DAYS.map(d => `
-<div class="day-pill ${state.filterDay === d.id ? 'active' : ''}"
-style="${state.filterDay === d.id ? `background:${d.color};border-color:transparent;` : ''}"
-onclick="setDayFilter('${d.id}')">
-<span class="day-short">${d.short}</span>
-<span class="day-count">${counts[d.id]}</span>
-</div>
-`).join('')}
-`;
+  strip.innerHTML = `
+    <div class="day-pill all-pill ${state.filterDay === 'all' ? 'active' : ''}" 
+         style="${state.filterDay === 'all' ? 'background:var(--accent);border-color:transparent;' : ''}"
+         onclick="setDayFilter('all')">
+      <span class="day-short" style="${state.filterDay === 'all' ? 'color:#fff' : ''}">ALL</span>
+      <span class="day-count" style="${state.filterDay === 'all' ? 'color:#fff' : ''}">${total}</span>
+    </div>
+    ${VISIT_DAYS.map(d => `
+      <div class="day-pill ${state.filterDay === d.id ? 'active' : ''}"
+           style="${state.filterDay === d.id ? `background:${d.color};border-color:transparent;` : ''}"
+           onclick="setDayFilter('${d.id}')">
+        <span class="day-short">${d.short}</span>
+        <span class="day-count">${counts[d.id]}</span>
+      </div>
+    `).join('')}
+  `;
 }
 
 function setDayFilter(id) {
-state.filterDay = id;
-buildDayStrip();
-renderList();
+  state.filterDay = id;
+  buildDayStrip();
+  renderList();
 }
 
 
@@ -1129,112 +1211,112 @@ renderList();
 // RENDER LIST
 // ═══════════════════════════════════════════════
 function renderList() {
-const area = document.getElementById('listArea');
-document.getElementById('totalCount').textContent = state.clients.length;
+  const area = document.getElementById('listArea');
+  document.getElementById('totalCount').textContent = state.clients.length;
 
-let filtered = state.clients.filter(c => {
-const cDays = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
-const matchDay = state.filterDay === 'all' || cDays.includes(state.filterDay);
-const q = state.search;
-const phoneText = (c.phones || []).map(p => p.number).join(' ');
-const matchSearch = !q || [c.name, c.street, c.city, c.contact, phoneText].join(' ').toLowerCase().includes(q);
-return matchDay && matchSearch;
-});
+  let filtered = state.clients.filter(c => {
+    const cDays = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
+    const matchDay  = state.filterDay === 'all' || cDays.includes(state.filterDay);
+    const q = state.search;
+    const phoneText = (c.phones || []).map(p => p.number).join(' ');
+    const matchSearch = !q || [c.name, c.street, c.city, c.contact, phoneText].join(' ').toLowerCase().includes(q);
+    return matchDay && matchSearch;
+  });
 
-if (!filtered.length) {
-area.innerHTML = `
-<div class="empty-state">
-<div class="icon">🔍</div>
-<h3>${state.clients.length ? 'No matches found' : 'No clients yet'}</h3>
-<p>${state.clients.length ? 'Try a different search or filter.' : 'Tap + to add your first client.'}</p>
-</div>`;
-return;
-}
+  if (!filtered.length) {
+    area.innerHTML = `
+      <div class="empty-state">
+        <div class="icon">🔍</div>
+        <h3>${state.clients.length ? 'No matches found' : 'No clients yet'}</h3>
+        <p>${state.clients.length ? 'Try a different search or filter.' : 'Tap + to add your first client.'}</p>
+      </div>`;
+    return;
+  }
 
-// When filtering by a specific day, group by client type
-// When showing all days, group by visit day
-let html = '';
+  // When filtering by a specific day, group by client type
+  // When showing all days, group by visit day
+  let html = '';
 
-if (state.filterDay === 'all') {
-// Group by day order — a client appears in each day it belongs to
-const shown = new Set();
-VISIT_DAYS.forEach(day => {
-const dayClients = filtered.filter(c => {
-const cDays = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
-return cDays.includes(day.id);
-});
-if (!dayClients.length) return;
-html += `<div class="section-label" style="color:${day.color}">
-<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${day.color};margin-right:5px;vertical-align:middle;"></span>
-${day.label} <span style="color:var(--text3)">(${dayClients.length})</span>
-</div>`;
-html += dayClients.map(c => { shown.add(c.id); return clientCard(c); }).join('');
-});
-// Unassigned
-const unassigned = filtered.filter(c => {
-const cDays = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
-return !cDays.length;
-});
-if (unassigned.length) {
-html += `<div class="section-label">Unassigned <span style="color:var(--text3)">(${unassigned.length})</span></div>`;
-html += unassigned.map(c => clientCard(c)).join('');
-}
-} else {
-// Flat list sorted by name
-filtered.sort((a,b) => (a.name||'').localeCompare(b.name||''));
-html = filtered.map(c => clientCard(c)).join('');
-}
+  if (state.filterDay === 'all') {
+    // Group by day order — a client appears in each day it belongs to
+    const shown = new Set();
+    VISIT_DAYS.forEach(day => {
+      const dayClients = filtered.filter(c => {
+        const cDays = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
+        return cDays.includes(day.id);
+      });
+      if (!dayClients.length) return;
+      html += `<div class="section-label" style="color:${day.color}">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${day.color};margin-right:5px;vertical-align:middle;"></span>
+        ${day.label} <span style="color:var(--text3)">(${dayClients.length})</span>
+      </div>`;
+      html += dayClients.map(c => { shown.add(c.id); return clientCard(c); }).join('');
+    });
+    // Unassigned
+    const unassigned = filtered.filter(c => {
+      const cDays = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
+      return !cDays.length;
+    });
+    if (unassigned.length) {
+      html += `<div class="section-label">Unassigned <span style="color:var(--text3)">(${unassigned.length})</span></div>`;
+      html += unassigned.map(c => clientCard(c)).join('');
+    }
+  } else {
+    // Flat list sorted by name
+    filtered.sort((a,b) => (a.name||'').localeCompare(b.name||''));
+    html = filtered.map(c => clientCard(c)).join('');
+  }
 
-area.innerHTML = html || `<div class="empty-state"><div class="icon">📭</div><h3>No clients</h3></div>`;
+  area.innerHTML = html || `<div class="empty-state"><div class="icon">📭</div><h3>No clients</h3></div>`;
 }
 
 function clientCard(c) {
-const CLIENT = { color: '#4f9cf9', bg: 'rgba(79,156,249,.15)', label: 'Client' };
-const days = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
-const initials = (c.name || '?').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-const addr = [c.street, c.city, c.zip].filter(Boolean).join(', ');
-const mapsUrl = encodeURIComponent(addr);
+  const CLIENT = { color: '#4f9cf9', bg: 'rgba(79,156,249,.15)', label: 'Client' };
+  const days = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
+  const initials = (c.name || '?').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  const addr = [c.street, c.city, c.zip].filter(Boolean).join(', ');
+  const mapsUrl = encodeURIComponent(addr);
 
-const dayBadgesHtml = days.length ? `
-<div class="day-badges-row">
-${days.map(did => {
-const d = VISIT_DAYS.find(x => x.id === did);
-return d ? `<span class="day-badge-sm" style="background:${d.bg};color:${d.color}">${d.short}</span>` : '';
-}).join('')}
-</div>` : '';
+  const dayBadgesHtml = days.length ? `
+    <div class="day-badges-row">
+      ${days.map(did => {
+        const d = VISIT_DAYS.find(x => x.id === did);
+        return d ? `<span class="day-badge-sm" style="background:${d.bg};color:${d.color}">${d.short}</span>` : '';
+      }).join('')}
+    </div>` : '';
 
-if (routeMode) {
-const stopIdx = routeStops.indexOf(c.id);
-const isSelected = stopIdx !== -1;
-return `
-<div class="client-card ${isSelected ? 'selected-stop' : ''}" data-id="${c.id}" onclick="toggleStopSelection('${c.id}', event)">
-<div class="stop-check">
-<svg width="12" height="12" fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-</div>
-${isSelected ? `<div class="rsi-num" style="align-self:center;flex-shrink:0">${stopIdx + 1}</div>` : `<div class="card-avatar" style="background:${CLIENT.color}">${initials}</div>`}
-<div class="card-body">
-<div class="card-name">${esc(c.name)}</div>
-<div class="card-addr">${esc(addr) || 'No address'}</div>
-</div>
-<div class="card-actions">${dayBadgesHtml}</div>
-</div>`;
-}
+  if (routeMode) {
+    const stopIdx = routeStops.indexOf(c.id);
+    const isSelected = stopIdx !== -1;
+    return `
+      <div class="client-card ${isSelected ? 'selected-stop' : ''}" data-id="${c.id}" onclick="toggleStopSelection('${c.id}', event)">
+        <div class="stop-check">
+          <svg width="12" height="12" fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        ${isSelected ? `<div class="rsi-num" style="align-self:center;flex-shrink:0">${stopIdx + 1}</div>` : `<div class="card-avatar" style="background:${CLIENT.color}">${initials}</div>`}
+        <div class="card-body">
+          <div class="card-name">${esc(c.name)}</div>
+          <div class="card-addr">${esc(addr) || 'No address'}</div>
+        </div>
+        <div class="card-actions">${dayBadgesHtml}</div>
+      </div>`;
+  }
 
-return `
-<div class="client-card" onclick="openDetail('${c.id}')">
-<div class="card-avatar" style="background:${CLIENT.color}">${initials}</div>
-<div class="card-body">
-<div class="card-name">${esc(c.name)}</div>
-<div class="card-addr">${esc(addr) || 'No address'}</div>
-${c.contact ? `<div class="card-meta"><span class="card-phone">${esc(c.contact)}</span></div>` : ''}
-</div>
-<div class="card-actions">
-${dayBadgesHtml}
-<a class="map-btn" href="https://maps.google.com/?q=${mapsUrl}" target="_blank" onclick="event.stopPropagation()">
-<svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-</a>
-</div>
-</div>`;
+  return `
+    <div class="client-card" onclick="openDetail('${c.id}')">
+      <div class="card-avatar" style="background:${CLIENT.color}">${initials}</div>
+      <div class="card-body">
+        <div class="card-name">${esc(c.name)}</div>
+        <div class="card-addr">${esc(addr) || 'No address'}</div>
+        ${c.contact ? `<div class="card-meta"><span class="card-phone">${esc(c.contact)}</span></div>` : ''}
+      </div>
+      <div class="card-actions">
+        ${dayBadgesHtml}
+        <a class="map-btn" href="https://maps.google.com/?q=${mapsUrl}" target="_blank" onclick="event.stopPropagation()">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </a>
+      </div>
+    </div>`;
 }
 
 
@@ -1242,258 +1324,258 @@ ${dayBadgesHtml}
 // ADD / EDIT
 // ═══════════════════════════════════════════════
 function buildDaySelector() {
-document.getElementById('daySelector').innerHTML = VISIT_DAYS.map(d => `
-<div class="day-sel-btn" data-day="${d.id}" onclick="selectDay('${d.id}')">
-<span class="dsb-dot" style="background:${d.color}"></span>
-${d.short}
-</div>
-`).join('');
+  document.getElementById('daySelector').innerHTML = VISIT_DAYS.map(d => `
+    <div class="day-sel-btn" data-day="${d.id}" onclick="selectDay('${d.id}')">
+      <span class="dsb-dot" style="background:${d.color}"></span>
+      ${d.short}
+    </div>
+  `).join('');
 }
 
 function selectDay(id) {
-const el = document.querySelector(`.day-sel-btn[data-day="${id}"]`);
-if (!el) return;
-const d = VISIT_DAYS.find(x => x.id === id);
-const isSelected = el.classList.toggle('selected');
-el.style.background = isSelected ? d.color : 'var(--bg)';
-el.style.borderColor = isSelected ? d.color : 'var(--border)';
-el.style.color = isSelected ? '#fff' : 'var(--text3)';
+  const el = document.querySelector(`.day-sel-btn[data-day="${id}"]`);
+  if (!el) return;
+  const d = VISIT_DAYS.find(x => x.id === id);
+  const isSelected = el.classList.toggle('selected');
+  el.style.background = isSelected ? d.color : 'var(--bg)';
+  el.style.borderColor = isSelected ? d.color : 'var(--border)';
+  el.style.color = isSelected ? '#fff' : 'var(--text3)';
 }
 
 document.getElementById('addBtn').addEventListener('click', () => {
-state.editingId = null;
-clearForm();
-document.getElementById('modalTitle').textContent = 'New Client';
-document.getElementById('deleteRow').style.display = 'none';
-openModal('addModal');
+  state.editingId = null;
+  clearForm();
+  document.getElementById('modalTitle').textContent = 'New Client';
+  document.getElementById('deleteRow').style.display = 'none';
+  openModal('addModal');
 });
 
 function clearForm() {
-['f_name','f_street','f_city','f_zip','f_contact','f_email','f_notes'].forEach(id => {
-document.getElementById(id).value = '';
-});
-document.querySelectorAll('.day-sel-btn').forEach(el => {
-el.classList.remove('selected');
-el.style.background = 'var(--bg)';
-el.style.borderColor = 'var(--border)';
-el.style.color = 'var(--text3)';
-});
-// Reset phone list to one blank entry
-document.getElementById('phoneList').innerHTML = '';
-addPhoneEntry();
+  ['f_name','f_street','f_city','f_zip','f_contact','f_email','f_notes'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.querySelectorAll('.day-sel-btn').forEach(el => {
+    el.classList.remove('selected');
+    el.style.background = 'var(--bg)';
+    el.style.borderColor = 'var(--border)';
+    el.style.color = 'var(--text3)';
+  });
+  // Reset phone list to one blank entry
+  document.getElementById('phoneList').innerHTML = '';
+  addPhoneEntry();
 }
 
 function saveClient() {
-const name = document.getElementById('f_name').value.trim();
-const street = document.getElementById('f_street').value.trim();
-const city = document.getElementById('f_city').value.trim();
+  const name = document.getElementById('f_name').value.trim();
+  const street = document.getElementById('f_street').value.trim();
+  const city = document.getElementById('f_city').value.trim();
 
-if (!name) { toast('⚠️ Name is required'); return; }
-if (!street || !city) { toast('⚠️ Address required'); return; }
+  if (!name) { toast('⚠️ Name is required'); return; }
+  if (!street || !city) { toast('⚠️ Address required'); return; }
 
-// Collect multi-day selections
-const visitDays = Array.from(document.querySelectorAll('.day-sel-btn.selected')).map(el => el.dataset.day);
+  // Collect multi-day selections
+  const visitDays = Array.from(document.querySelectorAll('.day-sel-btn.selected')).map(el => el.dataset.day);
 
-// Collect phone entries
-const phones = [];
-document.querySelectorAll('.phone-entry').forEach(row => {
-const num = formatPhone(row.querySelector('.ph-number').value.trim());
-const lbl = row.querySelector('.ph-label').value.trim() || 'Main';
-if (num) phones.push({ number: num, label: lbl });
-});
+  // Collect phone entries
+  const phones = [];
+  document.querySelectorAll('.phone-entry').forEach(row => {
+    const num = formatPhone(row.querySelector('.ph-number').value.trim());
+    const lbl = row.querySelector('.ph-label').value.trim() || 'Main';
+    if (num) phones.push({ number: num, label: lbl });
+  });
 
-const client = {
-id: state.editingId || uid(),
-name,
-type: 'client',
-visitDays,
-street,
-city,
-zip: document.getElementById('f_zip').value.trim(),
-contact: document.getElementById('f_contact').value.trim(),
-phones,
-email: document.getElementById('f_email').value.trim(),
-notes: document.getElementById('f_notes').value.trim(),
-updatedAt: Date.now(),
-};
+  const client = {
+    id: state.editingId || uid(),
+    name,
+    type: 'client',
+    visitDays,
+    street,
+    city,
+    zip: document.getElementById('f_zip').value.trim(),
+    contact: document.getElementById('f_contact').value.trim(),
+    phones,
+    email: document.getElementById('f_email').value.trim(),
+    notes: document.getElementById('f_notes').value.trim(),
+    updatedAt: Date.now(),
+  };
 
-if (state.editingId) {
-const idx = state.clients.findIndex(c => c.id === state.editingId);
-if (idx > -1) state.clients[idx] = client;
-} else {
-state.clients.unshift(client);
-}
+  if (state.editingId) {
+    const idx = state.clients.findIndex(c => c.id === state.editingId);
+    if (idx > -1) state.clients[idx] = client;
+  } else {
+    state.clients.unshift(client);
+  }
 
-closeModal('addModal');
-renderList();
-buildDayStrip();
-saveToBin();
-toast(state.editingId ? '✓ Client updated' : '✓ Client added');
+  closeModal('addModal');
+  renderList();
+  buildDayStrip();
+  saveToBin();
+  toast(state.editingId ? '✓ Client updated' : '✓ Client added');
 }
 
 function deleteClient() {
-if (!state.editingId) return;
-if (!confirm('Delete this client?')) return;
-state.clients = state.clients.filter(c => c.id !== state.editingId);
-closeModal('addModal');
-renderList();
-buildDayStrip();
-saveToBin();
-toast('🗑 Client removed');
+  if (!state.editingId) return;
+  if (!confirm('Delete this client?')) return;
+  state.clients = state.clients.filter(c => c.id !== state.editingId);
+  closeModal('addModal');
+  renderList();
+  buildDayStrip();
+  saveToBin();
+  toast('🗑 Client removed');
 }
 
 // ═══════════════════════════════════════════════
 // DETAIL VIEW
 // ═══════════════════════════════════════════════
 function openDetail(id) {
-const c = state.clients.find(x => x.id === id);
-if (!c) return;
-const CLIENT = { color: '#4f9cf9', bg: 'rgba(79,156,249,.15)' };
-const days = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
-const initials = (c.name || '?').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-const addr = [c.street, c.city, c.zip].filter(Boolean).join(', ');
-const mapsUrl = encodeURIComponent(addr);
-const phones = c.phones && c.phones.length ? c.phones : (c.phone ? [{number:c.phone,label:'Main'}] : []);
+  const c = state.clients.find(x => x.id === id);
+  if (!c) return;
+  const CLIENT = { color: '#4f9cf9', bg: 'rgba(79,156,249,.15)' };
+  const days = c.visitDays && c.visitDays.length ? c.visitDays : (c.visitDay ? [c.visitDay] : []);
+  const initials = (c.name || '?').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  const addr = [c.street, c.city, c.zip].filter(Boolean).join(', ');
+  const mapsUrl = encodeURIComponent(addr);
+  const phones = c.phones && c.phones.length ? c.phones : (c.phone ? [{number:c.phone,label:'Main'}] : []);
 
-const dayBadgesHtml = days.map(did => {
-const d = VISIT_DAYS.find(x => x.id === did);
-return d ? `<span class="type-badge" style="background:${d.bg};color:${d.color}">${d.label}</span>` : '';
-}).join('');
+  const dayBadgesHtml = days.map(did => {
+    const d = VISIT_DAYS.find(x => x.id === did);
+    return d ? `<span class="type-badge" style="background:${d.bg};color:${d.color}">${d.label}</span>` : '';
+  }).join('');
 
-const phonesHtml = phones.map(p => `
-<div class="detail-row">
-<div class="detail-row-icon" style="background:rgba(52,201,138,.15)">📞</div>
-<div class="detail-row-body">
-<div class="detail-row-label">${esc(p.label || 'Phone')}</div>
-<div class="detail-row-value">${esc(p.number)}</div>
-</div>
-<div class="phone-actions">
-<a class="phone-action-btn phone-action-call" href="tel:${p.number.replace(/\D/g,'')}">
-<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-</a>
-<a class="phone-action-btn phone-action-sms" href="sms:${p.number.replace(/\D/g,'')}">
-<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-</a>
-</div>
-</div>`).join('');
+  const phonesHtml = phones.map(p => `
+    <div class="detail-row">
+      <div class="detail-row-icon" style="background:rgba(52,201,138,.15)">📞</div>
+      <div class="detail-row-body">
+        <div class="detail-row-label">${esc(p.label || 'Phone')}</div>
+        <div class="detail-row-value">${esc(p.number)}</div>
+      </div>
+      <div class="phone-actions">
+        <a class="phone-action-btn phone-action-call" href="tel:${p.number.replace(/\D/g,'')}">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        </a>
+        <a class="phone-action-btn phone-action-sms" href="sms:${p.number.replace(/\D/g,'')}">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </a>
+      </div>
+    </div>`).join('');
 
-document.getElementById('detailSheet').innerHTML = `
-<div class="sheet-handle"></div>
-<div class="detail-header">
-<div class="detail-avatar" style="background:${CLIENT.color}">${initials}</div>
-<div style="flex:1;min-width:0;">
-<div class="detail-name">${esc(c.name)}</div>
-${dayBadgesHtml ? `<div style="display:flex;gap:5px;align-items:center;margin-top:5px;flex-wrap:wrap;">${dayBadgesHtml}</div>` : ''}
-</div>
-</div>
-<div class="detail-section">
-<div class="detail-row">
-<div class="detail-row-icon" style="background:rgba(79,156,249,.15)">📍</div>
-<div class="detail-row-body">
-<div class="detail-row-label">Address</div>
-<div class="detail-row-value">${esc(addr) || '—'}</div>
-</div>
-${addr ? `<a class="detail-row-action" href="https://maps.google.com/?q=${mapsUrl}" target="_blank">
-<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-</a>` : ''}
-</div>
-${c.contact ? `<div class="detail-row">
-<div class="detail-row-icon" style="background:rgba(52,201,138,.15)">👤</div>
-<div class="detail-row-body">
-<div class="detail-row-label">Contact</div>
-<div class="detail-row-value">${esc(c.contact)}</div>
-</div>
-</div>` : ''}
-${phonesHtml}
-${c.email ? `<div class="detail-row">
-<div class="detail-row-icon" style="background:rgba(123,97,255,.15)">✉️</div>
-<div class="detail-row-body">
-<div class="detail-row-label">Email</div>
-<div class="detail-row-value">${esc(c.email)}</div>
-</div>
-<a class="detail-row-action" href="mailto:${c.email}">
-<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-</a>
-</div>` : ''}
-${c.notes ? `<div class="detail-row">
-<div class="detail-row-icon" style="background:rgba(245,166,35,.15)">📝</div>
-<div class="detail-row-body">
-<div class="detail-row-label">Notes</div>
-<div class="detail-row-value">${esc(c.notes)}</div>
-</div>
-</div>` : ''}
-</div>
-<div class="btn-row">
-<button class="btn btn-ghost" onclick="closeModal('detailModal')">Close</button>
-<button class="btn btn-primary" onclick="editClient('${c.id}')">Edit</button>
-</div>
-`;
-openModal('detailModal');
+  document.getElementById('detailSheet').innerHTML = `
+    <div class="sheet-handle"></div>
+    <div class="detail-header">
+      <div class="detail-avatar" style="background:${CLIENT.color}">${initials}</div>
+      <div style="flex:1;min-width:0;">
+        <div class="detail-name">${esc(c.name)}</div>
+        ${dayBadgesHtml ? `<div style="display:flex;gap:5px;align-items:center;margin-top:5px;flex-wrap:wrap;">${dayBadgesHtml}</div>` : ''}
+      </div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-row">
+        <div class="detail-row-icon" style="background:rgba(79,156,249,.15)">📍</div>
+        <div class="detail-row-body">
+          <div class="detail-row-label">Address</div>
+          <div class="detail-row-value">${esc(addr) || '—'}</div>
+        </div>
+        ${addr ? `<a class="detail-row-action" href="https://maps.google.com/?q=${mapsUrl}" target="_blank">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>` : ''}
+      </div>
+      ${c.contact ? `<div class="detail-row">
+        <div class="detail-row-icon" style="background:rgba(52,201,138,.15)">👤</div>
+        <div class="detail-row-body">
+          <div class="detail-row-label">Contact</div>
+          <div class="detail-row-value">${esc(c.contact)}</div>
+        </div>
+      </div>` : ''}
+      ${phonesHtml}
+      ${c.email ? `<div class="detail-row">
+        <div class="detail-row-icon" style="background:rgba(123,97,255,.15)">✉️</div>
+        <div class="detail-row-body">
+          <div class="detail-row-label">Email</div>
+          <div class="detail-row-value">${esc(c.email)}</div>
+        </div>
+        <a class="detail-row-action" href="mailto:${c.email}">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>` : ''}
+      ${c.notes ? `<div class="detail-row">
+        <div class="detail-row-icon" style="background:rgba(245,166,35,.15)">📝</div>
+        <div class="detail-row-body">
+          <div class="detail-row-label">Notes</div>
+          <div class="detail-row-value">${esc(c.notes)}</div>
+        </div>
+      </div>` : ''}
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="closeModal('detailModal')">Close</button>
+      <button class="btn btn-primary" onclick="editClient('${c.id}')">Edit</button>
+    </div>
+  `;
+  openModal('detailModal');
 }
 
 function editClient(id) {
-const c = state.clients.find(x => x.id === id);
-if (!c) return;
-closeModal('detailModal');
-state.editingId = id;
-document.getElementById('modalTitle').textContent = 'Edit Client';
-document.getElementById('f_name').value = c.name || '';
-document.getElementById('f_street').value = c.street || '';
-document.getElementById('f_city').value = c.city || '';
-document.getElementById('f_zip').value = c.zip || '';
-document.getElementById('f_contact').value = c.contact || '';
-document.getElementById('f_email').value = c.email || '';
-document.getElementById('f_notes').value = c.notes || '';
+  const c = state.clients.find(x => x.id === id);
+  if (!c) return;
+  closeModal('detailModal');
+  state.editingId = id;
+  document.getElementById('modalTitle').textContent = 'Edit Client';
+  document.getElementById('f_name').value = c.name || '';
+  document.getElementById('f_street').value = c.street || '';
+  document.getElementById('f_city').value = c.city || '';
+  document.getElementById('f_zip').value = c.zip || '';
+  document.getElementById('f_contact').value = c.contact || '';
+  document.getElementById('f_email').value = c.email || '';
+  document.getElementById('f_notes').value = c.notes || '';
 
-// Restore multi-day
-const days = c.visitDays || (c.visitDay ? [c.visitDay] : []);
-document.querySelectorAll('.day-sel-btn').forEach(el => {
-const d = VISIT_DAYS.find(x => x.id === el.dataset.day);
-const selected = days.includes(el.dataset.day);
-el.classList.toggle('selected', selected);
-el.style.background = selected ? d.color : 'var(--bg)';
-el.style.borderColor = selected ? d.color : 'var(--border)';
-el.style.color = selected ? '#fff' : 'var(--text3)';
-});
+  // Restore multi-day
+  const days = c.visitDays || (c.visitDay ? [c.visitDay] : []);
+  document.querySelectorAll('.day-sel-btn').forEach(el => {
+    const d = VISIT_DAYS.find(x => x.id === el.dataset.day);
+    const selected = days.includes(el.dataset.day);
+    el.classList.toggle('selected', selected);
+    el.style.background = selected ? d.color : 'var(--bg)';
+    el.style.borderColor = selected ? d.color : 'var(--border)';
+    el.style.color = selected ? '#fff' : 'var(--text3)';
+  });
 
-// Restore phones
-const phoneList = document.getElementById('phoneList');
-phoneList.innerHTML = '';
-const phones = c.phones && c.phones.length ? c.phones : (c.phone ? [{ number: c.phone, label: 'Main' }] : []);
-if (phones.length) {
-phones.forEach(p => addPhoneEntry(p.number, p.label));
-} else {
-addPhoneEntry();
-}
+  // Restore phones
+  const phoneList = document.getElementById('phoneList');
+  phoneList.innerHTML = '';
+  const phones = c.phones && c.phones.length ? c.phones : (c.phone ? [{ number: c.phone, label: 'Main' }] : []);
+  if (phones.length) {
+    phones.forEach(p => addPhoneEntry(p.number, p.label));
+  } else {
+    addPhoneEntry();
+  }
 
-document.getElementById('deleteRow').style.display = 'block';
-openModal('addModal');
+  document.getElementById('deleteRow').style.display = 'block';
+  openModal('addModal');
 }
 
 // ═══════════════════════════════════════════════
 // SETTINGS
 // ═══════════════════════════════════════════════
 function switchTab(tab) {
-document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
-if (tab === 'settings') {
-document.getElementById('s_apiKey').value = state.apiKey;
-document.getElementById('s_binId').value = state.binId;
-document.getElementById('totalCount').textContent = state.clients.length;
-openModal('settingsModal');
-}
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  if (tab === 'settings') {
+    document.getElementById('s_apiKey').value = state.apiKey;
+    document.getElementById('s_binId').value = state.binId;
+    document.getElementById('totalCount').textContent = state.clients.length;
+    openModal('settingsModal');
+  }
 }
 
 function saveSettings() {
-const key = document.getElementById('s_apiKey').value.trim();
-const bin = document.getElementById('s_binId').value.trim();
-if (!key || !bin) { toast('⚠️ Both fields required'); return; }
-state.apiKey = key;
-state.binId = bin;
-localStorage.setItem('ct_apiKey', key);
-localStorage.setItem('ct_binId', bin);
-closeModal('settingsModal');
-document.querySelector('[data-tab="clients"]').click();
-loadFromBin();
+  const key = document.getElementById('s_apiKey').value.trim();
+  const bin = document.getElementById('s_binId').value.trim();
+  if (!key || !bin) { toast('⚠️ Both fields required'); return; }
+  state.apiKey = key;
+  state.binId = bin;
+  localStorage.setItem('ct_apiKey', key);
+  localStorage.setItem('ct_binId', bin);
+  closeModal('settingsModal');
+  document.querySelector('[data-tab="clients"]').click();
+  loadFromBin();
 }
 
 // ═══════════════════════════════════════════════
@@ -1504,205 +1586,205 @@ let routeStops = []; // ordered array of client ids
 let dragSrcIdx = null;
 
 function enterRouteMode() {
-routeMode = true;
-routeStops = [];
-document.getElementById('mainTopbar').style.display = 'none';
-document.getElementById('routeTopbar').classList.add('visible');
-document.getElementById('routeBar').classList.remove('visible');
-// Disable add button interaction, hide day strip & filter while in route mode
-document.getElementById('addBtn').style.pointerEvents = 'none';
-renderList();
-updateRouteBar();
+  routeMode = true;
+  routeStops = [];
+  document.getElementById('mainTopbar').style.display = 'none';
+  document.getElementById('routeTopbar').classList.add('visible');
+  document.getElementById('routeBar').classList.remove('visible');
+  // Disable add button interaction, hide day strip & filter while in route mode
+  document.getElementById('addBtn').style.pointerEvents = 'none';
+  renderList();
+  updateRouteBar();
 }
 
 function exitRouteMode() {
-routeMode = false;
-routeStops = [];
-document.getElementById('mainTopbar').style.display = '';
-document.getElementById('routeTopbar').classList.remove('visible');
-document.getElementById('routeBar').classList.remove('visible');
-document.getElementById('addBtn').style.pointerEvents = '';
-renderList();
+  routeMode = false;
+  routeStops = [];
+  document.getElementById('mainTopbar').style.display = '';
+  document.getElementById('routeTopbar').classList.remove('visible');
+  document.getElementById('routeBar').classList.remove('visible');
+  document.getElementById('addBtn').style.pointerEvents = '';
+  renderList();
 }
 
 function toggleStopSelection(id, e) {
-e.stopPropagation();
-const idx = routeStops.indexOf(id);
-if (idx === -1) {
-routeStops.push(id);
-} else {
-routeStops.splice(idx, 1);
-}
-// Update just this card's visual state without full re-render
-const card = document.querySelector(`.client-card[data-id="${id}"]`);
-if (card) {
-const stopIdx = routeStops.indexOf(id);
-if (stopIdx === -1) {
-card.classList.remove('selected-stop');
-const numEl = card.querySelector('.stop-num-badge');
-if (numEl) numEl.remove();
-const check = card.querySelector('.stop-check');
-if (check) check.innerHTML = '';
-} else {
-card.classList.add('selected-stop');
-}
-}
-// Re-render to refresh all stop numbers correctly
-renderList();
-updateRouteBar();
+  e.stopPropagation();
+  const idx = routeStops.indexOf(id);
+  if (idx === -1) {
+    routeStops.push(id);
+  } else {
+    routeStops.splice(idx, 1);
+  }
+  // Update just this card's visual state without full re-render
+  const card = document.querySelector(`.client-card[data-id="${id}"]`);
+  if (card) {
+    const stopIdx = routeStops.indexOf(id);
+    if (stopIdx === -1) {
+      card.classList.remove('selected-stop');
+      const numEl = card.querySelector('.stop-num-badge');
+      if (numEl) numEl.remove();
+      const check = card.querySelector('.stop-check');
+      if (check) check.innerHTML = '';
+    } else {
+      card.classList.add('selected-stop');
+    }
+  }
+  // Re-render to refresh all stop numbers correctly
+  renderList();
+  updateRouteBar();
 }
 
 function updateRouteBar() {
-const bar = document.getElementById('routeBar');
-const goBtn = document.getElementById('routeGoBtn');
-const countEl = document.getElementById('routeTopbarCount');
-const n = routeStops.length;
+  const bar = document.getElementById('routeBar');
+  const goBtn = document.getElementById('routeGoBtn');
+  const countEl = document.getElementById('routeTopbarCount');
+  const n = routeStops.length;
 
-countEl.textContent = n === 0 ? 'Tap clients to add stops' : `${n} stop${n !== 1 ? 's' : ''} selected`;
+  countEl.textContent = n === 0 ? 'Tap clients to add stops' : `${n} stop${n !== 1 ? 's' : ''} selected`;
 
-if (n === 0) {
-bar.classList.remove('visible');
-return;
-}
-bar.classList.add('visible');
-goBtn.disabled = n < 1;
+  if (n === 0) {
+    bar.classList.remove('visible');
+    return;
+  }
+  bar.classList.add('visible');
+  goBtn.disabled = n < 1;
 
-const list = document.getElementById('routeStopsList');
-list.innerHTML = routeStops.map((id, i) => {
-const c = state.clients.find(x => x.id === id);
-if (!c) return '';
-const addr = [c.street, c.city].filter(Boolean).join(', ');
-return `
-<div class="route-stop-item" draggable="true"
-data-idx="${i}"
-ondragstart="rsiDragStart(event,${i})"
-ondragover="rsiDragOver(event)"
-ondrop="rsiDrop(event,${i})"
-ondragend="rsiDragEnd(event)">
-<div class="rsi-num">${i + 1}</div>
-<div class="rsi-body">
-<div class="rsi-name">${esc(c.name)}</div>
-<div class="rsi-addr">${esc(addr)}</div>
-</div>
-<div class="rsi-drag"><span></span><span></span><span></span></div>
-<div class="rsi-remove" onclick="removeRouteStop('${id}')">✕</div>
-</div>`;
-}).join('');
+  const list = document.getElementById('routeStopsList');
+  list.innerHTML = routeStops.map((id, i) => {
+    const c = state.clients.find(x => x.id === id);
+    if (!c) return '';
+    const addr = [c.street, c.city].filter(Boolean).join(', ');
+    return `
+      <div class="route-stop-item" draggable="true"
+           data-idx="${i}"
+           ondragstart="rsiDragStart(event,${i})"
+           ondragover="rsiDragOver(event)"
+           ondrop="rsiDrop(event,${i})"
+           ondragend="rsiDragEnd(event)">
+        <div class="rsi-num">${i + 1}</div>
+        <div class="rsi-body">
+          <div class="rsi-name">${esc(c.name)}</div>
+          <div class="rsi-addr">${esc(addr)}</div>
+        </div>
+        <div class="rsi-drag"><span></span><span></span><span></span></div>
+        <div class="rsi-remove" onclick="removeRouteStop('${id}')">✕</div>
+      </div>`;
+  }).join('');
 }
 
 function removeRouteStop(id) {
-routeStops = routeStops.filter(x => x !== id);
-renderList();
-updateRouteBar();
+  routeStops = routeStops.filter(x => x !== id);
+  renderList();
+  updateRouteBar();
 }
 
 // ── Drag-to-reorder in route bar ──
 function rsiDragStart(e, idx) {
-dragSrcIdx = idx;
-e.currentTarget.classList.add('dragging');
-e.dataTransfer.effectAllowed = 'move';
+  dragSrcIdx = idx;
+  e.currentTarget.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
 }
 function rsiDragOver(e) {
-e.preventDefault();
-e.dataTransfer.dropEffect = 'move';
-document.querySelectorAll('.route-stop-item').forEach(el => el.classList.remove('drag-over'));
-e.currentTarget.classList.add('drag-over');
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  document.querySelectorAll('.route-stop-item').forEach(el => el.classList.remove('drag-over'));
+  e.currentTarget.classList.add('drag-over');
 }
 function rsiDrop(e, targetIdx) {
-e.preventDefault();
-if (dragSrcIdx === null || dragSrcIdx === targetIdx) return;
-const moved = routeStops.splice(dragSrcIdx, 1)[0];
-routeStops.splice(targetIdx, 0, moved);
-dragSrcIdx = null;
-updateRouteBar();
-renderList();
+  e.preventDefault();
+  if (dragSrcIdx === null || dragSrcIdx === targetIdx) return;
+  const moved = routeStops.splice(dragSrcIdx, 1)[0];
+  routeStops.splice(targetIdx, 0, moved);
+  dragSrcIdx = null;
+  updateRouteBar();
+  renderList();
 }
 function rsiDragEnd(e) {
-e.currentTarget.classList.remove('dragging');
-document.querySelectorAll('.route-stop-item').forEach(el => el.classList.remove('drag-over'));
-dragSrcIdx = null;
+  e.currentTarget.classList.remove('dragging');
+  document.querySelectorAll('.route-stop-item').forEach(el => el.classList.remove('drag-over'));
+  dragSrcIdx = null;
 }
 
 // ── Launch Google Maps multi-stop route ──
 function launchGoogleMapsRoute() {
-if (routeStops.length === 0) return;
+  if (routeStops.length === 0) return;
 
-const clients = routeStops.map(id => state.clients.find(c => c.id === id)).filter(Boolean);
-const addresses = clients.map(c => [c.street, c.city, c.zip].filter(Boolean).join(', '));
+  const clients = routeStops.map(id => state.clients.find(c => c.id === id)).filter(Boolean);
+  const addresses = clients.map(c => [c.street, c.city, c.zip].filter(Boolean).join(', '));
 
-if (addresses.length === 1) {
-// Single stop — just navigate to it
-const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(addresses[0])}&travelmode=driving`;
-window.open(url, '_blank');
-return;
-}
+  if (addresses.length === 1) {
+    // Single stop — just navigate to it
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(addresses[0])}&travelmode=driving`;
+    window.open(url, '_blank');
+    return;
+  }
 
-// Multi-stop: origin = first, destination = last, waypoints = middle stops
-const origin = encodeURIComponent(addresses[0]);
-const destination = encodeURIComponent(addresses[addresses.length - 1]);
-const waypoints = addresses.slice(1, -1).map(a => encodeURIComponent(a)).join('|');
+  // Multi-stop: origin = first, destination = last, waypoints = middle stops
+  const origin = encodeURIComponent(addresses[0]);
+  const destination = encodeURIComponent(addresses[addresses.length - 1]);
+  const waypoints = addresses.slice(1, -1).map(a => encodeURIComponent(a)).join('|');
 
-let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=driving`;
-if (waypoints) url += `&waypoints=${waypoints}`;
+  let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=driving`;
+  if (waypoints) url += `&waypoints=${waypoints}`;
 
-window.open(url, '_blank');
-toast(`✓ Opening ${clients.length}-stop route in Google Maps`);
+  window.open(url, '_blank');
+  toast(`✓ Opening ${clients.length}-stop route in Google Maps`);
 }
 
 
 function openModal(id) {
-document.getElementById(id).classList.add('open');
+  document.getElementById(id).classList.add('open');
 }
 function closeModal(id) {
-document.getElementById(id).classList.remove('open');
-if (id === 'settingsModal') {
-document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'clients'));
-}
+  document.getElementById(id).classList.remove('open');
+  if (id === 'settingsModal') {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'clients'));
+  }
 }
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
-overlay.addEventListener('click', e => {
-if (e.target === overlay) closeModal(overlay.id);
-});
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeModal(overlay.id);
+  });
 });
 
 // ═══════════════════════════════════════════════
 // PHONE UTILITIES
 // ═══════════════════════════════════════════════
 function formatPhone(raw) {
-if (!raw) return '';
-const digits = raw.replace(/\D/g, '');
-if (digits.length === 10) {
-return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
-} else if (digits.length === 11 && digits[0] === '1') {
-return `(${digits.slice(1,4)}) ${digits.slice(4,7)}-${digits.slice(7)}`;
-}
-return raw; // Return as-is if not a standard US number
+  if (!raw) return '';
+  const digits = raw.replace(/\D/g, '');
+  if (digits.length === 10) {
+    return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
+  } else if (digits.length === 11 && digits[0] === '1') {
+    return `(${digits.slice(1,4)}) ${digits.slice(4,7)}-${digits.slice(7)}`;
+  }
+  return raw; // Return as-is if not a standard US number
 }
 
 function addPhoneEntry(number = '', label = '') {
-const list = document.getElementById('phoneList');
-const row = document.createElement('div');
-row.className = 'phone-entry';
-row.innerHTML = `
-<input class="form-input ph-label" placeholder="Label" value="${esc(label)}" style="width:90px;flex-shrink:0;font-size:13px;" type="text"/>
-<input class="form-input ph-number" placeholder="(281) 555-0100" value="${esc(number)}" type="tel" oninput="autoFormatPhone(this)"/>
-<div class="phone-remove-btn" onclick="this.parentElement.remove()">
-<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-</div>`;
-list.appendChild(row);
+  const list = document.getElementById('phoneList');
+  const row = document.createElement('div');
+  row.className = 'phone-entry';
+  row.innerHTML = `
+    <input class="form-input ph-label" placeholder="Label" value="${esc(label)}" style="width:90px;flex-shrink:0;font-size:13px;" type="text"/>
+    <input class="form-input ph-number" placeholder="(281) 555-0100" value="${esc(number)}" type="tel" oninput="autoFormatPhone(this)"/>
+    <div class="phone-remove-btn" onclick="this.parentElement.remove()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>`;
+  list.appendChild(row);
 }
 
 function autoFormatPhone(input) {
-const digits = input.value.replace(/\D/g, '').slice(0, 10);
-let formatted = digits;
-if (digits.length > 6) {
-formatted = `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
-} else if (digits.length > 3) {
-formatted = `(${digits.slice(0,3)}) ${digits.slice(3)}`;
-} else if (digits.length > 0) {
-formatted = `(${digits}`;
-}
-input.value = formatted;
+  const digits = input.value.replace(/\D/g, '').slice(0, 10);
+  let formatted = digits;
+  if (digits.length > 6) {
+    formatted = `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
+  } else if (digits.length > 3) {
+    formatted = `(${digits.slice(0,3)}) ${digits.slice(3)}`;
+  } else if (digits.length > 0) {
+    formatted = `(${digits}`;
+  }
+  input.value = formatted;
 }
 
 // ═══════════════════════════════════════════════
@@ -1710,19 +1792,19 @@ input.value = formatted;
 // ═══════════════════════════════════════════════
 function uid() { return Math.random().toString(36).slice(2) + Date.now().toString(36); }
 function esc(s) {
-if (!s) return '';
-return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  if (!s) return '';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 let toastTimer;
 function toast(msg, isError = false) {
-const el = document.getElementById('toast');
-el.textContent = msg;
-el.style.background = isError ? 'rgba(242,92,92,.15)' : 'var(--surface)';
-el.style.borderColor = isError ? 'rgba(242,92,92,.35)' : 'var(--border)';
-el.classList.add('show');
-clearTimeout(toastTimer);
-toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.style.background = isError ? 'rgba(242,92,92,.15)' : 'var(--surface)';
+  el.style.borderColor = isError ? 'rgba(242,92,92,.35)' : 'var(--border)';
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
 }
 </script>
 
