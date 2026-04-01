@@ -408,7 +408,7 @@ margin-bottom: 10px;
 .route-bar-hint { font-size: 10px; color: var(–text3); }
 .route-stops-list {
 display: flex; flex-direction: column; gap: 5px;
-max-height: 160px; overflow-y: auto; scrollbar-width: none;
+max-height: 120px; overflow-y: auto; scrollbar-width: none;
 margin-bottom: 12px;
 }
 .route-stops-list::-webkit-scrollbar { display: none; }
@@ -455,8 +455,9 @@ transition: all .15s;
 flex: 1;
 overflow-y: auto;
 padding: 10px 16px;
-padding-bottom: calc(180px + var(–safe-bottom));
+padding-bottom: calc(90px + var(–safe-bottom));
 scrollbar-width: none;
+transition: padding-bottom .3s;
 }
 .list-area::-webkit-scrollbar { display: none; }
 
@@ -1318,6 +1319,17 @@ function renderList() {
   area.innerHTML = html || `<div class="empty-state"><div class="icon">📭</div><h3>No clients</h3></div>`;
 }
 
+function adjustListPadding() {
+  const bar = document.getElementById('routeBar');
+  const list = document.getElementById('listArea');
+  if (routeMode && routeStops.length > 0) {
+    const barHeight = bar.offsetHeight;
+    list.style.paddingBottom = (barHeight + 80) + 'px';
+  } else {
+    list.style.paddingBottom = '';
+  }
+}
+
 function toggleShowInactive() {
   state.showInactive = !state.showInactive;
   renderList();
@@ -1439,10 +1451,13 @@ function saveClient() {
     if (num) phones.push({ number: num, label: lbl });
   });
 
+  const existing = state.editingId ? state.clients.find(c => c.id === state.editingId) : null;
+
   const client = {
     id: state.editingId || uid(),
     name,
     type: 'client',
+    active: existing ? existing.active : true,
     visitDays,
     street,
     city,
@@ -1470,13 +1485,24 @@ function saveClient() {
 
 function deleteClient() {
   if (!state.editingId) return;
-  if (!confirm('Delete this client?')) return;
+  if (!confirm('Delete this client? This cannot be undone.')) return;
   state.clients = state.clients.filter(c => c.id !== state.editingId);
   closeModal('addModal');
   renderList();
   buildDayStrip();
   saveToBin();
   toast('🗑 Client removed');
+}
+
+function toggleActive(id) {
+  const c = state.clients.find(x => x.id === id);
+  if (!c) return;
+  c.active = c.active === false ? true : false;
+  closeModal('detailModal');
+  renderList();
+  buildDayStrip();
+  saveToBin();
+  toast(c.active === false ? '⏸ Client deactivated' : '✅ Client reactivated');
 }
 
 // ═══════════════════════════════════════════════
@@ -1668,6 +1694,7 @@ function exitRouteMode() {
   document.getElementById('routeBar').classList.remove('visible');
   document.getElementById('addBtn').style.pointerEvents = '';
   renderList();
+  adjustListPadding();
 }
 
 function toggleStopSelection(id, e) {
@@ -1733,6 +1760,9 @@ function updateRouteBar() {
         <div class="rsi-remove" onclick="removeRouteStop('${id}')">✕</div>
       </div>`;
   }).join('');
+
+  // Give DOM time to render before measuring height
+  requestAnimationFrame(() => adjustListPadding());
 }
 
 function removeRouteStop(id) {
