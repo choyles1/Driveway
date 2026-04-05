@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
-<meta name="apple-mobile-web-app-title" content="MattsMowing"/>
-<title>MattsMowing</title>
+<meta name="apple-mobile-web-app-title" content="DriveWAY"/>
+<title>DriveWAY</title>
 <link rel="apple-touch-icon" id="appIcon" href=""/>
 <link rel="icon" id="favicon" href=""/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
@@ -427,7 +427,7 @@ cursor: pointer; white-space: nowrap; transition: all .15s; display: none;
 <body>
 <div id="app">
   <div class="topbar" id="mainTopbar">
-    <div class="topbar-logo">Matts<span>Mowing</span></div>
+    <div class="topbar-logo">Drive<span>WAY</span></div>
     <div class="topbar-actions">
       <div class="clear-visits-btn" id="clearVisitsBtn" onclick="clearAllVisits()">&#x2713; Clear Visits</div>
       <div class="icon-btn" id="syncBtn" title="Sync">
@@ -605,7 +605,7 @@ cursor: pointer; white-space: nowrap; transition: all .15s; display: none;
       </div>
     </div>
     <div style="text-align:center;margin-top:18px;">
-      <p style="font-size:11px;color:var(--text3);">MattsMowing v1.0 &middot; Your lawn care route planner</p>
+      <p style="font-size:11px;color:var(--text3);">DriveWAY v1.0 &middot; Built for healthcare sales rounds</p>
     </div>
   </div>
 </div>
@@ -625,79 +625,40 @@ cursor: pointer; white-space: nowrap; transition: all .15s; display: none;
   g.lineTo(R, S); g.quadraticCurveTo(0, S, 0, S-R);
   g.lineTo(0, R); g.quadraticCurveTo(0, 0, R, 0);
   g.closePath();
-  g.fillStyle = '#16a34a';
+  g.fillStyle = '#1d6ef5';
   g.fill();
   const grad = g.createRadialGradient(S/2, S*0.3, 0, S/2, S/2, S*0.7);
-  grad.addColorStop(0, 'rgba(255,255,255,0.15)');
-  grad.addColorStop(1, 'rgba(0,0,0,0.15)');
+  grad.addColorStop(0, 'rgba(255,255,255,0.18)');
+  grad.addColorStop(1, 'rgba(0,0,0,0.12)');
   g.fillStyle = grad;
   g.fill();
-  // Ground line
-  g.strokeStyle = 'rgba(255,255,255,0.3)';
-  g.lineWidth = 6;
-  g.beginPath(); g.moveTo(60, 360); g.lineTo(452, 360); g.stroke();
-  // Rear large wheel
-  g.beginPath(); g.arc(160, 355, 75, 0, Math.PI*2);
-  g.fillStyle = '#1a1a1a'; g.fill();
-  g.beginPath(); g.arc(160, 355, 62, 0, Math.PI*2);
-  g.fillStyle = '#333'; g.fill();
-  g.beginPath(); g.arc(160, 355, 20, 0, Math.PI*2);
-  g.fillStyle = '#ccc'; g.fill();
-  g.strokeStyle = '#555'; g.lineWidth = 4;
-  for (var a = 0; a < Math.PI*2; a += Math.PI/4) {
-    g.beginPath();
-    g.moveTo(160 + Math.cos(a)*30, 355 + Math.sin(a)*30);
-    g.lineTo(160 + Math.cos(a)*60, 355 + Math.sin(a)*60);
-    g.stroke();
-  }
-  // Front small wheel
-  g.beginPath(); g.arc(360, 355, 45, 0, Math.PI*2);
-  g.fillStyle = '#1a1a1a'; g.fill();
-  g.beginPath(); g.arc(360, 355, 36, 0, Math.PI*2);
-  g.fillStyle = '#333'; g.fill();
-  g.beginPath(); g.arc(360, 355, 13, 0, Math.PI*2);
-  g.fillStyle = '#ccc'; g.fill();
-  // Mower deck
-  g.beginPath(); g.rect(100, 310, 220, 40);
-  g.fillStyle = '#ca8a04'; g.fill();
-  // Main body
+  // Road surface
   g.beginPath();
-  g.moveTo(140, 310); g.lineTo(140, 230); g.lineTo(160, 210);
-  g.lineTo(310, 210); g.lineTo(340, 230); g.lineTo(340, 310);
+  g.moveTo(256, 130); g.lineTo(370, 420); g.lineTo(142, 420);
   g.closePath();
-  g.fillStyle = '#15803d'; g.fill();
-  g.strokeStyle = '#052e16'; g.lineWidth = 5; g.stroke();
-  // Hood
-  g.beginPath();
-  g.moveTo(290, 230); g.lineTo(380, 235); g.lineTo(390, 255);
-  g.lineTo(390, 290); g.lineTo(340, 295); g.lineTo(340, 230);
-  g.closePath();
-  g.fillStyle = '#166534'; g.fill();
-  g.strokeStyle = '#052e16'; g.lineWidth = 5; g.stroke();
-  // ROPS roll bar
-  g.strokeStyle = '#ffffff'; g.lineWidth = 12; g.lineCap = 'round';
-  g.beginPath(); g.moveTo(155, 230); g.lineTo(155, 165); g.stroke();
-  g.beginPath(); g.moveTo(280, 230); g.lineTo(280, 165); g.stroke();
-  g.beginPath(); g.moveTo(155, 165); g.lineTo(280, 165); g.stroke();
-  // Seat
-  g.beginPath(); g.ellipse(210, 225, 45, 18, 0, 0, Math.PI*2);
-  g.fillStyle = '#b45309'; g.fill();
-  g.beginPath(); g.ellipse(210, 220, 40, 14, 0, 0, Math.PI*2);
-  g.fillStyle = '#d97706'; g.fill();
-  // Steering wheel
-  g.beginPath(); g.arc(265, 240, 22, 0, Math.PI*2);
-  g.strokeStyle = '#ffffff'; g.lineWidth = 7; g.stroke();
-  g.beginPath(); g.moveTo(265,218); g.lineTo(265,262);
-  g.moveTo(243,240); g.lineTo(287,240); g.stroke();
-  // Exhaust stack
-  g.beginPath(); g.rect(368, 200, 14, 52);
-  g.fillStyle = '#374151'; g.fill();
-  g.fillStyle = 'rgba(255,255,255,0.4)';
-  g.beginPath(); g.arc(375, 182, 10, 0, Math.PI*2); g.fill();
-  g.fillStyle = 'rgba(255,255,255,0.25)';
-  g.beginPath(); g.arc(381, 164, 13, 0, Math.PI*2); g.fill();
   g.fillStyle = 'rgba(255,255,255,0.15)';
-  g.beginPath(); g.arc(372, 148, 16, 0, Math.PI*2); g.fill();
+  g.fill();
+  // Road edge lines
+  g.strokeStyle = '#ffffff'; g.lineWidth = 10; g.lineCap = 'round';
+  g.beginPath(); g.moveTo(256,130); g.lineTo(142,420); g.stroke();
+  g.beginPath(); g.moveTo(256,130); g.lineTo(370,420); g.stroke();
+  // Center dashes
+  g.strokeStyle = '#fbbf24'; g.lineWidth = 10;
+  [[170,210],[225,280],[295,375]].forEach(function(d) {
+    g.beginPath(); g.moveTo(256, d[0]); g.lineTo(256, d[1]); g.stroke();
+  });
+  // Pin shadow
+  g.beginPath(); g.ellipse(256, 150, 20, 7, 0, 0, Math.PI*2);
+  g.fillStyle = 'rgba(0,0,0,0.2)'; g.fill();
+  // Pin body
+  g.beginPath(); g.arc(256, 110, 38, 0, Math.PI*2);
+  g.fillStyle = '#ffffff'; g.fill();
+  // Pin dot
+  g.beginPath(); g.arc(256, 106, 15, 0, Math.PI*2);
+  g.fillStyle = '#1d6ef5'; g.fill();
+  // Pin tail
+  g.beginPath(); g.moveTo(256,155); g.lineTo(234,122); g.lineTo(278,122);
+  g.closePath(); g.fillStyle = '#ffffff'; g.fill();
   var png = c.toDataURL('image/png');
   document.getElementById('appIcon').href = png;
   document.getElementById('favicon').href = png;
@@ -933,7 +894,8 @@ function clientCard(c) {
     return '<div class="client-card ' + (isSelected ? 'selected-stop' : '') + '" data-id="' + c.id + '" onclick="toggleStopSelection(\'' + c.id + '\', event)">'
       + '<div class="stop-check"><svg width="12" height="12" fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>'
       + (isSelected ? '<div class="rsi-num" style="align-self:center;flex-shrink:0">' + (stopIdx+1) + '</div>' : '<div class="card-avatar" style="background:' + CLIENT.color + '">' + initials + '</div>')
-      + '<div class="card-body"><div class="card-name">' + esc(c.name) + '</div><div class="card-addr">' + (esc(addr) || 'No address') + '</div></div>'
+      + '<div class="card-body"><div class="card-name">' + esc(c.name) + '</div><div class="card-addr">' + (esc(addr) || 'No address') + '</div>'
+      + (c.agency ? '<div style="margin-top:4px;"><span class="agency-badge">' + esc(c.agency) + '</span></div>' : '') + '</div>'
       + '<div class="card-actions">' + dayBadgesHtml + '</div></div>';
   }
   const isInactive = c.active === false;
