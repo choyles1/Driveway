@@ -470,17 +470,19 @@ cursor: pointer; white-space: nowrap; transition: all .15s; display: none;
     <div class="loading-full"><div class="spinner"></div><span>Loading clients&#x2026;</span></div>
   </div>
 
-  <div class="route-bar" id="routeBar">
-    <div class="route-bar-top">
-      <span class="route-bar-label">&#x1F5FA; Route Stops</span>
-      <span class="route-bar-hint">&#x25B2; &#x25BC; to reorder</span>
-    </div>
-    <div class="route-stops-list" id="routeStopsList"></div>
-    <button class="route-go-btn" id="routeGoBtn" onclick="launchGoogleMapsRoute()" disabled>
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      Open Route in Google Maps
-    </button>
   </div>
+</div>
+
+<div class="route-bar" id="routeBar">
+  <div class="route-bar-top">
+    <span class="route-bar-label">&#x1F5FA; Route Stops</span>
+    <span class="route-bar-hint">&#x25B2; &#x25BC; to reorder</span>
+  </div>
+  <div class="route-stops-list" id="routeStopsList"></div>
+  <button class="route-go-btn" id="routeGoBtn" onclick="launchGoogleMapsRoute()" disabled>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    Open Route in Google Maps
+  </button>
 </div>
 
 <div class="bottom-nav">
@@ -1151,6 +1153,7 @@ function exitRouteMode() {
   document.getElementById('mainTopbar').style.display = '';
   document.getElementById('routeTopbar').classList.remove('visible');
   document.getElementById('routeBar').classList.remove('visible');
+  document.getElementById('listArea').style.paddingBottom = '';
   document.getElementById('addBtn').style.pointerEvents = '';
   renderList();
 }
@@ -1169,7 +1172,7 @@ function updateRouteBar() {
   const countEl = document.getElementById('routeTopbarCount');
   const n = routeStops.length;
   countEl.textContent = n === 0 ? 'Tap clients to add stops' : n + ' stop' + (n !== 1 ? 's' : '') + ' selected';
-  if (n === 0) { bar.classList.remove('visible'); return; }
+  if (n === 0) { bar.classList.remove('visible'); document.getElementById('listArea').style.paddingBottom = ''; return; }
   bar.classList.add('visible');
   goBtn.disabled = n < 1;
   let html = '';
