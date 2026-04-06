@@ -332,6 +332,20 @@ height: 42px !important;
 margin-top: -14px;
 box-shadow: 0 4px 12px rgba(29,110,245,.4);
 }
+.nav-tab-maps {
+color: var(–green) !important;
+position: relative;
+}
+.nav-tab-maps svg {
+background: var(–green);
+border-radius: 16px;
+padding: 7px;
+width: 42px !important;
+height: 42px !important;
+margin-top: -14px;
+box-shadow: 0 4px 12px rgba(22,163,74,.4);
+stroke: #fff;
+}
 
 .modal-overlay {
 position: fixed; inset: 0; background: rgba(0,0,0,.6);
@@ -500,10 +514,6 @@ cursor: pointer; white-space: nowrap; transition: all .15s; display: none;
     </div>
   </div>
   <div class="route-stops-list" id="routeStopsList"></div>
-  <button class="route-go-btn" id="routeGoBtn" onclick="launchGoogleMapsRoute()" disabled>
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-    Open Route in Google Maps
-  </button>
 </div>
 
 <div class="bottom-nav">
@@ -514,6 +524,10 @@ cursor: pointer; white-space: nowrap; transition: all .15s; display: none;
   <div class="nav-tab nav-tab-route" id="routeNavBtn" onclick="enterRouteMode()">
     <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="18" r="2"/><path d="M7 6h4a4 4 0 014 4v4a4 4 0 004 4M7 18h4"/></svg>
     Route
+  </div>
+  <div class="nav-tab nav-tab-maps" id="mapsNavBtn" onclick="launchGoogleMapsRoute()" style="display:none;">
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Maps
   </div>
   <div class="nav-tab" data-tab="settings" onclick="switchTab('settings')">
     <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
@@ -1168,6 +1182,8 @@ function enterRouteMode() {
   document.getElementById('routeTopbar').classList.add('visible');
   document.getElementById('routeBar').classList.remove('visible');
   document.getElementById('addBtn').style.pointerEvents = 'none';
+  document.getElementById('routeNavBtn').style.display = 'none';
+  document.getElementById('mapsNavBtn').style.display = '';
   renderList();
   updateRouteBar();
 }
@@ -1180,6 +1196,8 @@ function exitRouteMode() {
   document.getElementById('routeBar').classList.remove('visible');
   document.getElementById('listArea').style.paddingBottom = '';
   document.getElementById('addBtn').style.pointerEvents = '';
+  document.getElementById('routeNavBtn').style.display = '';
+  document.getElementById('mapsNavBtn').style.display = 'none';
   renderList();
 }
 
@@ -1193,13 +1211,14 @@ function toggleStopSelection(id, e) {
 
 function updateRouteBar() {
   const bar = document.getElementById('routeBar');
-  const goBtn = document.getElementById('routeGoBtn');
+  const mapsBtn = document.getElementById('mapsNavBtn');
   const countEl = document.getElementById('routeTopbarCount');
   const n = routeStops.length;
   countEl.textContent = n === 0 ? 'Tap clients to add stops' : n + ' stop' + (n !== 1 ? 's' : '') + ' selected';
-  if (n === 0) { bar.classList.remove('visible'); document.getElementById('listArea').style.paddingBottom = ''; return; }
+  if (n === 0) { bar.classList.remove('visible'); document.getElementById('listArea').style.paddingBottom = ''; mapsBtn.style.opacity = '0.4'; mapsBtn.style.pointerEvents = 'none'; return; }
   bar.classList.add('visible');
-  goBtn.disabled = n < 1;
+  mapsBtn.style.opacity = '1';
+  mapsBtn.style.pointerEvents = '';
   let html = '';
   routeStops.forEach((id, i) => {
     const c = state.clients.find(x => x.id === id);
