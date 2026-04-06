@@ -220,12 +220,14 @@ background: #ffffff;
 border: 1px solid rgba(29,110,245,.2); border-top: 2px solid var(–accent);
 border-radius: 16px 16px 0 0; padding: 12px 14px 12px; z-index: 25;
 box-shadow: 0 -4px 20px rgba(0,0,0,.10); display: none;
+max-height: 260px; overflow: hidden;
+display: none; flex-direction: column;
 }
-.route-bar.visible { display: block; }
-.route-bar-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.route-bar.visible { display: flex; }
+.route-bar-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-shrink: 0; }
 .route-bar-label { font-size: 11px; font-weight: 700; color: var(–accent); letter-spacing: .07em; text-transform: uppercase; }
 .route-bar-hint { font-size: 10px; color: var(–text3); }
-.route-stops-list { display: flex; flex-direction: column; gap: 5px; overflow-y: auto; max-height: 130px; margin-bottom: 10px; scrollbar-width: none; }
+.route-stops-list { display: flex; flex-direction: column; gap: 5px; overflow-y: auto; flex: 1; margin-bottom: 10px; scrollbar-width: none; min-height: 0; }
 .route-stops-list::-webkit-scrollbar { display: none; }
 .route-stop-item {
 display: flex; align-items: center; gap: 9px; background: #f5f6fa;
@@ -476,7 +478,12 @@ cursor: pointer; white-space: nowrap; transition: all .15s; display: none;
 <div class="route-bar" id="routeBar">
   <div class="route-bar-top">
     <span class="route-bar-label">&#x1F5FA; Route Stops</span>
-    <span class="route-bar-hint">&#x25B2; &#x25BC; to reorder</span>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="route-bar-hint">&#x25B2; &#x25BC; to reorder</span>
+      <div onclick="exitRouteMode()" style="width:24px;height:24px;border-radius:7px;background:rgba(242,92,92,.12);border:1px solid rgba(242,92,92,.25);color:var(--red);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;flex-shrink:0;">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+    </div>
   </div>
   <div class="route-stops-list" id="routeStopsList"></div>
   <button class="route-go-btn" id="routeGoBtn" onclick="launchGoogleMapsRoute()" disabled>
