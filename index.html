@@ -339,6 +339,7 @@ font-weight: 700; font-size: 15px; color: #fff; flex-shrink: 0;
 .card-meta { display: flex; gap: 6px; align-items: center; margin-top: 6px; flex-wrap: wrap; }
 .type-badge { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 999px; letter-spacing: .03em; }
 .card-phone { font-size: 11px; color: var(–text3); }
+.card-notes { font-size: 11px; color: var(–text3); margin-top: 5px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .card-actions { display: flex; flex-direction: column; gap: 7px; align-items: flex-end; flex-shrink: 0; }
 .map-btn {
 width: 32px; height: 32px; border-radius: 10px; background: rgba(29,110,245,.1);
@@ -1027,6 +1028,7 @@ function clientCard(c) {
     + woundCareBadgeHtml
     + (c.contact ? '<span class="card-phone">' + esc(c.contact) + '</span>' : '')
     + '</div>'
+    + (c.notes ? '<div class="card-notes">&#x1F4DD; ' + esc(c.notes) + '</div>' : '')
     + '</div>'
     + '<div class="card-actions">' + dayBadgesHtml
     + '<div class="visit-check-btn ' + (isVisited ? 'visited' : '') + '" onclick="toggleVisited(event,\'' + c.id + '\')">'
